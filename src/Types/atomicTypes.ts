@@ -58,11 +58,9 @@ export interface Precinct {
     district: DistrictID;
 }
 
-// TODO Define projection used to diferentiate between number and strings.
-// Check Map API for projection used and default to their choice.
 export interface Cordinate {
-    x: number | string;
-    y: number | string;
+    lat: number;
+    lng: number;
 }
 
 export enum JobType {
