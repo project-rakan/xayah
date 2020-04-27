@@ -71,3 +71,4 @@ export enum JobType {
 export type PrecinctID = number;
 export type DistrictID = number;
 export type MapID = number;
+export type GUID = string;
