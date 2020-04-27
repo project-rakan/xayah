@@ -59,8 +59,8 @@ export interface Precinct {
 }
 
 export interface Cordinate {
-    lat: number;
-    lng: number;
+    lat: Latitude;
+    lng: Longitude;
 }
 
 export enum JobType {
@@ -72,3 +72,5 @@ export type PrecinctID = number;
 export type DistrictID = number;
 export type MapID = number;
 export type GUID = string;
+export type Latitude = number;
+export type Longitude = number;
