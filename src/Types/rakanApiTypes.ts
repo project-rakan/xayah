@@ -10,8 +10,8 @@ export interface StartMapJobRequest {
 }
 
 export interface MapJobUpdate {
-    GUID: string;
-    mapId: GUID;
+    GUID: GUID;
+    mapId: MapID;
     updates: Map<PrecinctID, DistrictID>;
 }
 
