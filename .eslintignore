@@ -1,0 +1,4 @@
+# Ignore artifacts of create-react-app ejecting
+scripts/
+config/
+src/react-app-env.d.ts
