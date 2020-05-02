@@ -1,4 +1,4 @@
-import { BladeCallerProvider } from "../Types";
+import { BladeCallerProvider } from "./types";
 import {
     CreateGuidRequest,
     CreateGuidResponse,
