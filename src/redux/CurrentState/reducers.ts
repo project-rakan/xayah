@@ -1,21 +1,25 @@
-import { GetCurrentRedistrictingResponse } from "../../Types/bladecallerApiTypes";
-import { CurrentStateAction, CurrentStateActionType } from "./actionTypes";
-import { State } from "../../Types/atomicTypes";
+import {
+    CurrentStateAction,
+    CurrentStateActionType,
+    CurrentState,
+} from "./types";
+import { State } from "../../types/atomicTypes";
 
-const initialState: GetCurrentRedistrictingResponse = {
-    state: State.Iowa,
-    maxDistricts: 0,
-    fips: 0,
-    precincts: [],
+const initialState: CurrentState = {
+    isLoading: false,
+    stateInfo: { state: State.Iowa, maxDistricts: 0, fips: 0, precincts: [] },
 };
 
 export const CurrentStateReducer = (
-    state: GetCurrentRedistrictingResponse = initialState,
+    state: CurrentState = initialState,
     action: CurrentStateAction
-): GetCurrentRedistrictingResponse => {
+): CurrentState => {
     switch (action.type) {
         case CurrentStateActionType.ChangeCurrentStateAction:
-            return action.payload;
+            return {
+                isLoading: state.isLoading,
+                stateInfo: action.payload,
+            };
         default:
             return state;
     }

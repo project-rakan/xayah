@@ -1,15 +1,14 @@
 import {
     CreateGuidRequest,
-    CreateGuidResponse,
     GetCurrentRedistrictingRequest,
-    GetMapResponse,
     GetMapRequest,
-} from "../../Types/bladecallerApiTypes";
+} from "../../types/bladecallerApiTypes";
+import { GUID } from "../../types/atomicTypes";
 
 export interface BladeCallerProvider {
-    CreateGuid(request: CreateGuidRequest): CreateGuidResponse;
+    CreateGuid(request: CreateGuidRequest): Promise<GUID>;
 
-    GetMap(request: GetMapRequest): GetMapResponse;
+    GetMap(request: GetMapRequest): void;
 
     GetCurrentRedistricting(request: GetCurrentRedistrictingRequest): void;
 }
