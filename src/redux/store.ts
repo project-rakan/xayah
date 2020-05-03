@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from "redux";
-import { CurrentStateReducer } from "./CurrentState/Reducer";
+import { CurrentStateReducer } from "./CurrentState/reducers";
 
 const RootReducer = combineReducers({
     CurrentState: CurrentStateReducer,

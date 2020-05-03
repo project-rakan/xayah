@@ -1,5 +1,5 @@
 import { store } from "../store";
-import { CurrentStateActionType } from "./ActionTypes";
+import { CurrentStateActionType } from "./actionTypes";
 import { GetCurrentRedistrictingResponse } from "../../Types/bladecallerApiTypes";
 
 export const ChangeCurrentState = (

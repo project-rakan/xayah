@@ -1,5 +1,5 @@
 import { GetCurrentRedistrictingResponse } from "../../Types/bladecallerApiTypes";
-import { CurrentStateAction, CurrentStateActionType } from "./ActionTypes";
+import { CurrentStateAction, CurrentStateActionType } from "./actionTypes";
 import { State } from "../../Types/atomicTypes";
 
 const initialState: GetCurrentRedistrictingResponse = {

@@ -8,7 +8,7 @@ import {
     GetMapResponse,
 } from "../../Types/bladecallerApiTypes";
 import { State, PrecinctID, DistrictID } from "../../Types/atomicTypes";
-import { ChangeCurrentState } from "../../redux/CurrentState/ActionCreators";
+import { ChangeCurrentState } from "../../redux/CurrentState/actionCreators";
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data
