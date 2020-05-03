@@ -8,6 +8,7 @@ import {
     GetMapResponse,
 } from "../../Types/bladecallerApiTypes";
 import { State, PrecinctID, DistrictID } from "../../Types/atomicTypes";
+import { ChangeCurrentState } from "../../redux/CurrentState/ActionCreators";
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data
@@ -21,12 +22,11 @@ class MockBladecallerProvider implements BladeCallerProvider {
         return { state: request.state, map: new Map<PrecinctID, DistrictID>() };
     }
 
-    GetCurrentRedistricting(
-        request: GetCurrentRedistrictingRequest
-    ): GetCurrentRedistrictingResponse {
+    GetCurrentRedistricting(request: GetCurrentRedistrictingRequest): void {
         switch (request.state) {
             case State.Iowa:
-                return this.currentRedistrictingResponse;
+                ChangeCurrentState(this.currentRedistrictingResponse);
+                break;
             default:
                 throw new Error(
                     "Mock Bladecaller Provider only returns Iowa data"

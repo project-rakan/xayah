@@ -1,11 +1,15 @@
 import { mockBladecallerProvider } from "./mockBladecallerProvider";
 import { State } from "../../Types/atomicTypes";
+import { store } from "../../redux/store";
 
 test("Provides Mock Iowa Data", () => {
-    const response = mockBladecallerProvider.GetCurrentRedistricting({
+    mockBladecallerProvider.GetCurrentRedistricting({
         state: State.Iowa,
     });
-    expect(response.state).toBe(State.Iowa);
-    expect(response.fips).toBe(19);
-    expect(response.maxDistricts).toBe(4);
+
+    const currentState = store.getState().CurrentState;
+
+    expect(currentState.state).toBe(State.Iowa);
+    expect(currentState.fips).toBe(19);
+    expect(currentState.maxDistricts).toBe(4);
 });

@@ -2,7 +2,6 @@ import {
     CreateGuidRequest,
     CreateGuidResponse,
     GetCurrentRedistrictingRequest,
-    GetCurrentRedistrictingResponse,
     GetMapResponse,
     GetMapRequest,
 } from "../../Types/bladecallerApiTypes";
@@ -12,7 +11,5 @@ export interface BladeCallerProvider {
 
     GetMap(request: GetMapRequest): GetMapResponse;
 
-    GetCurrentRedistricting(
-        request: GetCurrentRedistrictingRequest
-    ): GetCurrentRedistrictingResponse;
+    GetCurrentRedistricting(request: GetCurrentRedistrictingRequest): void;
 }
