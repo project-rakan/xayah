@@ -1,4 +1,4 @@
-import { State, PrecinctID, DistrictID, MapID, GUID } from "../types";
+import { State, PrecinctID, DistrictID, MapID, GUID } from "../../types";
 
 export interface StartMapJobRequest {
     state: State;
@@ -29,4 +29,9 @@ export interface ScoreMapResponse {
     id: GUID;
     score: number;
     probability: number;
+}
+
+export interface RakanProvider {
+    startMapJob(request: StartMapJobRequest): void;
+    requestMapScore(request: ScoreMapRequest): void;
 }

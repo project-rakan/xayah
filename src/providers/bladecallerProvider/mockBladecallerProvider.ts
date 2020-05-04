@@ -1,33 +1,60 @@
-import { BladeCallerProvider } from "./types";
 import {
-    CreateGuidRequest,
-    CreateGuidResponse,
-    GetCurrentRedistrictingRequest,
+    BladeCallerProvider,
     GetCurrentRedistrictingResponse,
+    CreateGuidRequest,
     GetMapRequest,
-    GetMapResponse,
-} from "./bladecallerApiTypes";
-import { State, PrecinctID, DistrictID } from "../../types";
+    GetCurrentRedistrictingRequest,
+} from "./types";
+import {
+    changeCurrentState,
+    setCurrentStateLoadingStatus,
+} from "../../redux/currentState/actionCreators";
+import {
+    setCurrentDistrictingLoadingStatus,
+    replaceCurrentDistricting,
+} from "../../redux/currentDistricting/actionCreators";
+import { GUID, State, PrecinctID, DistrictID } from "../../types";
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data
-    currentRedistrictingResponse: GetCurrentRedistrictingResponse = require("../../../data/iowa.json");
+    static currentRedistrictingResponse: GetCurrentRedistrictingResponse = require("../../../data/iowa.json");
 
-    createGuid(request: CreateGuidRequest): CreateGuidResponse {
-        return { id: request.state + request.jobType + "123" };
+    createGuid(request: CreateGuidRequest): Promise<GUID> {
+        return Promise.resolve(request.state + request.jobType + "123");
     }
 
-    getMap(request: GetMapRequest): GetMapResponse {
-        return { state: request.state, map: new Map<PrecinctID, DistrictID>() };
-    }
-
-    getCurrentRedistricting(
-        request: GetCurrentRedistrictingRequest
-    ): GetCurrentRedistrictingResponse {
+    getMap(request: GetMapRequest): void {
+        setCurrentDistrictingLoadingStatus(true);
         switch (request.state) {
             case State.Iowa:
-                return this.currentRedistrictingResponse;
+                // TODO update with current districting mock data
+                const districtMap = new Map<PrecinctID, DistrictID>();
+                districtMap.set(1, 1);
+                replaceCurrentDistricting({
+                    districtMap: districtMap,
+                    mapId: 0,
+                });
+                setCurrentStateLoadingStatus(false);
+                break;
             default:
+                setCurrentStateLoadingStatus(false);
+                throw new Error(
+                    "Mock Bladecaller Provider only returns Iowa data"
+                );
+        }
+    }
+
+    getCurrentRedistricting(request: GetCurrentRedistrictingRequest): void {
+        setCurrentStateLoadingStatus(true);
+        switch (request.state) {
+            case State.Iowa:
+                changeCurrentState(
+                    MockBladecallerProvider.currentRedistrictingResponse
+                );
+                setCurrentStateLoadingStatus(false);
+                break;
+            default:
+                setCurrentStateLoadingStatus(false);
                 throw new Error(
                     "Mock Bladecaller Provider only returns Iowa data"
                 );
