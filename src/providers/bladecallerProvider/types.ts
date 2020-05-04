@@ -17,12 +17,12 @@ export interface CreateGuidResponse {
     id: GUID;
 }
 
-export interface GetMapRequest {
+export interface GetDistrictingRequest {
     state: State;
     mapId: MapID;
 }
 
-export interface GetMapResponse {
+export interface GetDistrictingResponse {
     state: State;
     map: Map<PrecinctID, DistrictID>;
 }
@@ -41,7 +41,7 @@ export interface GetCurrentRedistrictingResponse {
 export interface BladeCallerProvider {
     createGuid(request: CreateGuidRequest): Promise<GUID>;
 
-    getMap(request: GetMapRequest): void;
+    getMap(request: GetDistrictingRequest): void;
 
     getCurrentRedistricting(request: GetCurrentRedistrictingRequest): void;
 }

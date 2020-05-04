@@ -2,7 +2,7 @@ import {
     BladeCallerProvider,
     GetCurrentRedistrictingResponse,
     CreateGuidRequest,
-    GetMapRequest,
+    GetDistrictingRequest,
     GetCurrentRedistrictingRequest,
 } from "./types";
 import {
@@ -23,7 +23,7 @@ class MockBladecallerProvider implements BladeCallerProvider {
         return Promise.resolve(request.state + request.jobType + "123");
     }
 
-    getMap(request: GetMapRequest): void {
+    getMap(request: GetDistrictingRequest): void {
         setCurrentDistrictingLoadingStatus(true);
         switch (request.state) {
             case State.Iowa:
