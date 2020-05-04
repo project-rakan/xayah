@@ -5,15 +5,15 @@ import {
     GetMapRequest,
     GetCurrentRedistrictingRequest,
 } from "./types";
-import { State, PrecinctID, DistrictID, GUID } from "../../types";
 import {
     changeCurrentState,
     setCurrentStateLoadingStatus,
-} from "../../redux/fooCurrentState/fooActionCreators";
+} from "../../redux/currentState/actionCreators";
 import {
     setCurrentDistrictingLoadingStatus,
     replaceCurrentDistricting,
-} from "../../redux/fooCurrentDistricting/fooActionCreators";
+} from "../../redux/currentDistricting/actionCreators";
+import { GUID, State, PrecinctID, DistrictID } from "../../types";
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data

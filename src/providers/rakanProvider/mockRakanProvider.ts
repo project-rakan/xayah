@@ -1,13 +1,10 @@
 import { RakanProvider, StartMapJobRequest, ScoreMapRequest } from "./types";
 import { State } from "../../types";
-import {
-    addMapJob,
-    updateMapJob,
-} from "../../redux/fooMapJobs/fooActionCreators";
+import { addMapJob, updateMapJob } from "../../redux/mapJobs/actionCreators";
 import {
     addMapScore,
     updateMapScore,
-} from "../../redux/fooMapScores/fooActionCreators";
+} from "../../redux/mapScores/actionCreators";
 
 class MockRakanProvider implements RakanProvider {
     startMapJob(request: StartMapJobRequest): void {

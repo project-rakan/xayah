@@ -1,11 +1,11 @@
 import {
     State,
-    Precinct,
     JobType,
+    GUID,
     MapID,
     PrecinctID,
     DistrictID,
-    GUID,
+    Precinct,
 } from "../../types";
 
 export interface CreateGuidRequest {

@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from "redux";
-import { currentStateReducer } from "./fooCurrentState/reducers";
-import { currentDistrictingReducer } from "./fooCurrentDistricting/reducers";
-import { mapJobsReducer } from "./fooMapJobs/reducers";
-import { mapScoresReducer } from "./fooMapScores/reducers";
+import { currentStateReducer } from "./currentState/reducers";
+import { currentDistrictingReducer } from "./currentDistricting/reducers";
+import { mapJobsReducer } from "./mapJobs/reducers";
+import { mapScoresReducer } from "./mapScores/reducers";
 
 const rootReducer = combineReducers({
     currentState: currentStateReducer,
