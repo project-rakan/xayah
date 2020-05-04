@@ -1,22 +1,22 @@
 import { store } from "../store";
 import { MapJobsActionType, MapJob, MapJobUpdate } from "./types";
-import { GUID } from "../../types/atomicTypes";
+import { GUID } from "../../types";
 
-export const AddMapJob = (job: MapJob): void => {
+export const addMapJob = (job: MapJob): void => {
     store.dispatch({
         type: MapJobsActionType.AddMapJobAction,
         payload: job,
     });
 };
 
-export const RemoveMapJob = (jobID: GUID): void => {
+export const removeMapJob = (jobID: GUID): void => {
     store.dispatch({
         type: MapJobsActionType.RemoveMapJobAction,
         payload: jobID,
     });
 };
 
-export const UpdateMapJob = (update: MapJobUpdate): void => {
+export const updateMapJob = (update: MapJobUpdate): void => {
     store.dispatch({
         type: MapJobsActionType.UpdateMapJobAction,
         payload: update,

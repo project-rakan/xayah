@@ -1,14 +1,14 @@
 import { createStore, combineReducers } from "redux";
-import { CurrentStateReducer } from "./CurrentState/reducers";
-import { CurrentDistrictingReducer } from "./CurrentDistricting/reducers";
-import { MapJobsReducer } from "./MapJobs/reducers";
-import { MapScoresReducer } from "./MapScores/reducers";
+import { currentStateReducer } from "./fooCurrentState/reducers";
+import { currentDistrictingReducer } from "./fooCurrentDistricting/reducers";
+import { mapJobsReducer } from "./fooMapJobs/reducers";
+import { mapScoresReducer } from "./fooMapScores/reducers";
 
-const RootReducer = combineReducers({
-    CurrentState: CurrentStateReducer,
-    CurrentDistricting: CurrentDistrictingReducer,
-    MapJobs: MapJobsReducer,
-    MapScores: MapScoresReducer,
+const rootReducer = combineReducers({
+    currentState: currentStateReducer,
+    currentDistricting: currentDistrictingReducer,
+    mapJobs: mapJobsReducer,
+    mapScores: mapScoresReducer,
 });
 
-export const store = createStore(RootReducer);
+export const store = createStore(rootReducer);

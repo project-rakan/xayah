@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/prefer-regexp-exec */
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
@@ -79,8 +81,7 @@ function checkValidServiceWorker(swUrl: string, config?: Config): void {
             const contentType = response.headers.get("content-type");
             if (
                 response.status === 404 ||
-                (contentType != null &&
-                    contentType.indexOf("javascript") === -1)
+                (contentType != null && !contentType.includes("javascript"))
             ) {
                 // No service worker found. Probably a different app. Reload the page.
                 navigator.serviceWorker.ready.then((registration) => {

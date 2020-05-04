@@ -1,10 +1,4 @@
-import {
-    State,
-    GUID,
-    MapID,
-    PrecinctID,
-    DistrictID,
-} from "../../types/atomicTypes";
+import { State, GUID, MapID, PrecinctID, DistrictID } from "../../types";
 
 export enum MapJobsActionType {
     AddMapJobAction = "AddMapJobsAction",
@@ -34,7 +28,7 @@ export type MapJobsAction =
 
 export interface MapJob {
     state: State;
-    GUID: GUID;
+    id: GUID;
     alpha: number;
     beta: number;
     gamma: number;
@@ -46,5 +40,5 @@ export interface MapJob {
 export interface MapJobUpdate {
     map?: Map<PrecinctID, DistrictID>;
     mapId?: MapID;
-    GUID: GUID;
+    id: GUID;
 }

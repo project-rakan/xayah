@@ -1,10 +1,10 @@
 import { store } from "../store";
 import { CurrentStateActionType } from "./types";
-import { GetCurrentRedistrictingResponse } from "../../types/bladecallerApiTypes";
+import { GetCurrentRedistrictingResponse } from "../../providers/bladecallerProvider/types";
 
 // TODO: The response type ought to be abstracted away from the redux model.
 
-export const ChangeCurrentState = (
+export const changeCurrentState = (
     response: GetCurrentRedistrictingResponse
 ): void => {
     store.dispatch({
@@ -13,7 +13,7 @@ export const ChangeCurrentState = (
     });
 };
 
-export const SetCurrentStateLoadingStatus = (isLoading: boolean): void => {
+export const setCurrentStateLoadingStatus = (isLoading: boolean): void => {
     store.dispatch({
         type: CurrentStateActionType.SetStateLoadingStatus,
         payload: isLoading,

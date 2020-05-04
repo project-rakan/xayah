@@ -3,14 +3,14 @@ import {
     CurrentStateActionType,
     CurrentState,
 } from "./types";
-import { State } from "../../types/atomicTypes";
+import { State } from "../../types";
 
 const initialState: CurrentState = {
     isLoading: false,
     stateInfo: { state: State.Iowa, maxDistricts: 0, fips: 0, precincts: [] },
 };
 
-export const CurrentStateReducer = (
+export const currentStateReducer = (
     state: CurrentState = initialState,
     action: CurrentStateAction
 ): CurrentState => {

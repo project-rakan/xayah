@@ -1,19 +1,19 @@
-import { State } from "../../types/atomicTypes";
+import { State } from "../../types";
 import { store } from "../../redux/store";
 import { mockRakanProvider } from "./mockRakanProvider";
 
 test("Runs Mock Iowa Jobs", () => {
     mockRakanProvider.startMapJob({
         state: State.Iowa,
-        GUID: "IAStartMap123",
+        id: "IAStartMap123",
         alpha: 11,
         beta: 22,
         gamma: 33,
         eta: 44,
     });
 
-    const mapJobs = store.getState().MapJobs;
-    const entry = mapJobs.find((job) => job.GUID === "IAStartMap123");
+    const mapJobs = store.getState().mapJobs;
+    const entry = mapJobs.find((job) => job.id === "IAStartMap123");
 
     expect(entry).toBeTruthy();
     expect(entry?.state).toBe(State.Iowa);
@@ -33,7 +33,7 @@ test("Provides Mock Iowa Districts", () => {
 
     mockRakanProvider.requestMapScore({
         state: State.Iowa,
-        GUID: "IAScoreMap123",
+        id: "IAScoreMap123",
         alpha: 11,
         beta: 22,
         gamma: 33,
@@ -41,8 +41,8 @@ test("Provides Mock Iowa Districts", () => {
         map: map,
     });
 
-    const mapScores = store.getState().MapScores;
-    const entry = mapScores.find((score) => score.GUID === "IAScoreMap123");
+    const mapScores = store.getState().mapScores;
+    const entry = mapScores.find((score) => score.id === "IAScoreMap123");
 
     expect(entry).toBeTruthy();
     expect(entry?.state).toBe(State.Iowa);

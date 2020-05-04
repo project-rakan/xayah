@@ -1,7 +1,7 @@
 import { MapJobsAction, MapJob, MapJobsActionType } from "./types";
-import { DistrictID, PrecinctID } from "../../types/atomicTypes";
+import { DistrictID, PrecinctID } from "../../types";
 
-export const MapJobsReducer = (
+export const mapJobsReducer = (
     state: MapJob[] = [],
     action: MapJobsAction
 ): MapJob[] => {
@@ -9,12 +9,10 @@ export const MapJobsReducer = (
         case MapJobsActionType.AddMapJobAction:
             return [action.payload, ...state];
         case MapJobsActionType.RemoveMapJobAction:
-            return state.filter((job) => job.GUID !== action.payload);
+            return state.filter((job) => job.id !== action.payload);
         case MapJobsActionType.UpdateMapJobAction:
             const newState = [...state];
-            const job = newState.find(
-                (job) => job.GUID === action.payload.GUID
-            );
+            const job = newState.find((job) => job.id === action.payload.id);
 
             if (!job) {
                 return state; // Ignore updates to Jobs that we dont have.

@@ -1,8 +1,8 @@
-import { State, PrecinctID, DistrictID, MapID, GUID } from "./atomicTypes";
+import { State, PrecinctID, DistrictID, MapID, GUID } from "../../types";
 
 export interface StartMapJobRequest {
     state: State;
-    GUID: GUID;
+    id: GUID;
     alpha: number;
     beta: number;
     gamma: number;
@@ -10,13 +10,13 @@ export interface StartMapJobRequest {
 }
 
 export interface MapJobUpdate {
-    GUID: GUID;
+    id: GUID;
     mapId: MapID;
     updates: Map<PrecinctID, DistrictID>;
 }
 
 export interface ScoreMapRequest {
-    GUID: GUID;
+    id: GUID;
     state: State;
     map: Map<PrecinctID, DistrictID>;
     alpha: number;
@@ -26,7 +26,12 @@ export interface ScoreMapRequest {
 }
 
 export interface ScoreMapResponse {
-    GUID: GUID;
+    id: GUID;
     score: number;
     probability: number;
+}
+
+export interface RakanProvider {
+    startMapJob(request: StartMapJobRequest): void;
+    requestMapScore(request: ScoreMapRequest): void;
 }

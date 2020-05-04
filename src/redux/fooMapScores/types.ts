@@ -1,4 +1,4 @@
-import { GUID, State, PrecinctID, DistrictID } from "../../types/atomicTypes";
+import { GUID, State, PrecinctID, DistrictID } from "../../types";
 
 export enum MapScoresActionType {
     AddMapScoreAction = "AddMapScoresAction",
@@ -27,13 +27,13 @@ export type MapScoresAction =
     | UpdateMapScoreAction;
 
 export interface MapScoreUpdate {
-    GUID: GUID;
+    id: GUID;
     score: number;
     probability: number;
 }
 
 export interface MapScore {
-    GUID: GUID;
+    id: GUID;
     state: State;
     map: Map<PrecinctID, DistrictID>;
     alpha: number;

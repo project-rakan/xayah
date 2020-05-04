@@ -1,6 +1,6 @@
 import { MapScore, MapScoresAction, MapScoresActionType } from "./types";
 
-export const MapScoresReducer = (
+export const mapScoresReducer = (
     state: MapScore[] = [],
     action: MapScoresAction
 ): MapScore[] => {
@@ -8,11 +8,11 @@ export const MapScoresReducer = (
         case MapScoresActionType.AddMapScoreAction:
             return [action.payload, ...state];
         case MapScoresActionType.RemoveMapScoreAction:
-            return state.filter((score) => score.GUID !== action.payload);
+            return state.filter((score) => score.id !== action.payload);
         case MapScoresActionType.UpdateMapScoreAction:
             const newState = [...state];
             const score = newState.find(
-                (score) => score.GUID === action.payload.GUID
+                (score) => score.id === action.payload.id
             );
 
             if (!score) {

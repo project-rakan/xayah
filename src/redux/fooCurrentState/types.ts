@@ -1,4 +1,4 @@
-import { GetCurrentRedistrictingResponse } from "../../types/bladecallerApiTypes";
+import { GetCurrentRedistrictingResponse } from "../../providers/bladecallerProvider/types";
 
 export enum CurrentStateActionType {
     ChangeCurrentStateAction = "ChangeCurrentStateAction",

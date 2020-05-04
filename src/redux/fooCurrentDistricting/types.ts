@@ -1,4 +1,4 @@
-import { PrecinctID, DistrictID, MapID } from "../../types/atomicTypes";
+import { PrecinctID, DistrictID, MapID } from "../../types";
 
 export enum CurrentDistrictingActionType {
     ReplaceCurrentDistrictingAction = "ReplaceCurrentDistrictingAction",

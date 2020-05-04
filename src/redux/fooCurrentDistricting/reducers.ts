@@ -3,7 +3,7 @@ import {
     CurrentDistrictingAction,
     CurrentDistrictingActionType,
 } from "./types";
-import { PrecinctID, DistrictID } from "../../types/atomicTypes";
+import { PrecinctID, DistrictID } from "../../types";
 
 const initialState: CurrentDistricting = {
     isLoading: false,
@@ -11,7 +11,7 @@ const initialState: CurrentDistricting = {
     mapID: 0,
 };
 
-export const CurrentDistrictingReducer = (
+export const currentDistrictingReducer = (
     state: CurrentDistricting = initialState,
     action: CurrentDistrictingAction
 ): CurrentDistricting => {

@@ -1,19 +1,21 @@
-import { RakanProvider } from "./types";
-import { StartMapJobRequest, ScoreMapRequest } from "../../types/rakanApiTypes";
-import { State } from "../../types/atomicTypes";
-import { AddMapJob, UpdateMapJob } from "../../redux/MapJobs/actionCreators";
+import { RakanProvider, StartMapJobRequest, ScoreMapRequest } from "./types";
+import { State } from "../../types";
 import {
-    AddMapScore,
-    UpdateMapScore,
-} from "../../redux/MapScores/actionCreators";
+    addMapJob,
+    updateMapJob,
+} from "../../redux/fooMapJobs/fooActionCreators";
+import {
+    addMapScore,
+    updateMapScore,
+} from "../../redux/fooMapScores/fooActionCreators";
 
 class MockRakanProvider implements RakanProvider {
     startMapJob(request: StartMapJobRequest): void {
         switch (request.state) {
             case State.Iowa:
                 // Create new map job
-                AddMapJob({
-                    GUID: "IAStartMap123",
+                addMapJob({
+                    id: "IAStartMap123",
                     state: request.state,
                     alpha: request.alpha,
                     beta: request.beta,
@@ -25,14 +27,14 @@ class MockRakanProvider implements RakanProvider {
                 // start async updates of map job
                 const mapUpdate = new Map();
                 mapUpdate.set(1, 1);
-                UpdateMapJob({
-                    GUID: "IAStartMap123",
+                updateMapJob({
+                    id: "IAStartMap123",
                     map: mapUpdate,
                 });
 
                 // finish async updates of map job
-                UpdateMapJob({
-                    GUID: "IAStartMap123",
+                updateMapJob({
+                    id: "IAStartMap123",
                     mapId: 1,
                 });
                 break;
@@ -45,8 +47,8 @@ class MockRakanProvider implements RakanProvider {
     requestMapScore(request: ScoreMapRequest): void {
         switch (request.state) {
             case State.Iowa:
-                AddMapScore({
-                    GUID: "IAScoreMap123",
+                addMapScore({
+                    id: "IAScoreMap123",
                     state: request.state,
                     map: request.map,
                     alpha: request.alpha,
@@ -54,8 +56,8 @@ class MockRakanProvider implements RakanProvider {
                     gamma: request.gamma,
                     eta: request.eta,
                 });
-                UpdateMapScore({
-                    GUID: "IAScoreMap123",
+                updateMapScore({
+                    id: "IAScoreMap123",
                     score: 1,
                     probability: 0.5,
                 });

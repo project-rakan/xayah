@@ -1,8 +1,8 @@
 import { store } from "../store";
 import { CurrentDistrictingActionType } from "./types";
-import { PrecinctID, DistrictID, MapID } from "../../types/atomicTypes";
+import { PrecinctID, DistrictID, MapID } from "../../types";
 
-export const ReplaceCurrentDistricting = (newMap: {
+export const replaceCurrentDistricting = (newMap: {
     districtMap: Map<PrecinctID, DistrictID>;
     mapId: MapID;
 }): void => {
@@ -12,7 +12,7 @@ export const ReplaceCurrentDistricting = (newMap: {
     });
 };
 
-export const SetCurrentDistrictingLoadingStatus = (
+export const setCurrentDistrictingLoadingStatus = (
     isLoading: boolean
 ): void => {
     store.dispatch({
@@ -22,7 +22,7 @@ export const SetCurrentDistrictingLoadingStatus = (
 };
 
 // TODO: write rakan mocks and utilize UpdateCurrentDistricting
-export const UpdateCurrentDistricting = (
+export const updateCurrentDistricting = (
     updates: Map<PrecinctID, DistrictID>
 ): void => {
     store.dispatch({
