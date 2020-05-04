@@ -14,7 +14,7 @@ export interface CreateGuidRequest {
 }
 
 export interface CreateGuidResponse {
-    GUID: GUID;
+    id: GUID;
 }
 
 export interface GetMapRequest {

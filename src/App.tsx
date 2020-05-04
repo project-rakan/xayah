@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function App(): JSX.Element {
+function app(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">BootStrap Placeholder</header>
@@ -9,4 +9,4 @@ function App(): JSX.Element {
     );
 }
 
-export default App;
+export default app;

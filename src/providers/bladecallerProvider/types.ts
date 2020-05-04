@@ -8,11 +8,11 @@ import {
 } from "./bladecallerApiTypes";
 
 export interface BladeCallerProvider {
-    CreateGuid(request: CreateGuidRequest): CreateGuidResponse;
+    createGuid(request: CreateGuidRequest): CreateGuidResponse;
 
-    GetMap(request: GetMapRequest): GetMapResponse;
+    getMap(request: GetMapRequest): GetMapResponse;
 
-    GetCurrentRedistricting(
+    getCurrentRedistricting(
         request: GetCurrentRedistrictingRequest
     ): GetCurrentRedistrictingResponse;
 }
