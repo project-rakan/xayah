@@ -1,10 +1,11 @@
 import { store } from "../store";
 import { CurrentDistrictingActionType } from "./types";
-import { PrecinctID, DistrictID } from "../../types/atomicTypes";
+import { PrecinctID, DistrictID, MapID } from "../../types/atomicTypes";
 
-export const ReplaceCurrentDistricting = (
-    newMap: Map<PrecinctID, DistrictID>
-): void => {
+export const ReplaceCurrentDistricting = (newMap: {
+    districtMap: Map<PrecinctID, DistrictID>;
+    mapId: MapID;
+}): void => {
     store.dispatch({
         type: CurrentDistrictingActionType.ReplaceCurrentDistrictingAction,
         payload: newMap,

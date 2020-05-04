@@ -1,4 +1,4 @@
-import { PrecinctID, DistrictID } from "../../types/atomicTypes";
+import { PrecinctID, DistrictID, MapID } from "../../types/atomicTypes";
 
 export enum CurrentDistrictingActionType {
     ReplaceCurrentDistrictingAction = "ReplaceCurrentDistrictingAction",
@@ -8,7 +8,7 @@ export enum CurrentDistrictingActionType {
 
 interface ReplaceCurrentDistrictingAction {
     type: CurrentDistrictingActionType.ReplaceCurrentDistrictingAction;
-    payload: Map<PrecinctID, DistrictID>;
+    payload: { districtMap: Map<PrecinctID, DistrictID>; mapId: MapID };
 }
 
 interface UpdateCurrentDistrictingAction {
@@ -28,5 +28,6 @@ export type CurrentDistrictingAction =
 
 export interface CurrentDistricting {
     isLoading: boolean;
+    mapID: MapID;
     districtMap: Map<PrecinctID, DistrictID>;
 }

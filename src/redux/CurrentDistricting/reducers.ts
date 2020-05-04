@@ -8,6 +8,7 @@ import { PrecinctID, DistrictID } from "../../types/atomicTypes";
 const initialState: CurrentDistricting = {
     isLoading: false,
     districtMap: new Map(),
+    mapID: 0,
 };
 
 export const CurrentDistrictingReducer = (
@@ -18,11 +19,13 @@ export const CurrentDistrictingReducer = (
         case CurrentDistrictingActionType.ReplaceCurrentDistrictingAction:
             return {
                 isLoading: state.isLoading,
-                districtMap: new Map(action.payload),
+                mapID: action.payload.mapId,
+                districtMap: new Map(action.payload.districtMap),
             };
         case CurrentDistrictingActionType.SetDistrictingLoadingStatus:
             return {
                 isLoading: action.payload,
+                mapID: state.mapID,
                 districtMap: state.districtMap,
             };
         case CurrentDistrictingActionType.UpdateCurrentDistrictingAction:
@@ -34,6 +37,7 @@ export const CurrentDistrictingReducer = (
             return {
                 isLoading: state.isLoading,
                 districtMap: newMap,
+                mapID: state.mapID,
             };
         default:
             return state;

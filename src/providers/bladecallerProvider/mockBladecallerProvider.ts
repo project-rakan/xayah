@@ -30,7 +30,10 @@ class MockBladecallerProvider implements BladeCallerProvider {
                 // TODO update with current districting mock data
                 const DistrictMap = new Map<PrecinctID, DistrictID>();
                 DistrictMap.set(1, 1);
-                ReplaceCurrentDistricting(DistrictMap);
+                ReplaceCurrentDistricting({
+                    districtMap: DistrictMap,
+                    mapId: 0,
+                });
                 SetCurrentStateLoadingStatus(false);
                 break;
             default:
