@@ -6,7 +6,7 @@ import {
     PrecinctID,
     DistrictID,
     GUID,
-} from "./atomicTypes";
+} from "../../types";
 
 export interface CreateGuidRequest {
     state: State;

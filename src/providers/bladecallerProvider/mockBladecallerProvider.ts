@@ -6,8 +6,8 @@ import {
     GetCurrentRedistrictingResponse,
     GetMapRequest,
     GetMapResponse,
-} from "../../Types/bladecallerApiTypes";
-import { State, PrecinctID, DistrictID } from "../../Types/atomicTypes";
+} from "./bladecallerApiTypes";
+import { State, PrecinctID, DistrictID } from "../../types";
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data

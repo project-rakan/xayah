@@ -1,4 +1,4 @@
-import { State, PrecinctID, DistrictID, MapID, GUID } from "./atomicTypes";
+import { State, PrecinctID, DistrictID, MapID, GUID } from "../types";
 
 export interface StartMapJobRequest {
     state: State;
