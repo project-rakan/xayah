@@ -1,5 +1,5 @@
 import React from "react";
-import "./fooApp.css";
+import "./app.css";
 
 function app(): JSX.Element {
     return (
