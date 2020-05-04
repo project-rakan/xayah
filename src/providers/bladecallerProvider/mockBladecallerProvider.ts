@@ -6,22 +6,22 @@ import {
     GetCurrentRedistrictingResponse,
     GetMapRequest,
     GetMapResponse,
-} from "../../Types/bladecallerApiTypes";
-import { State, PrecinctID, DistrictID } from "../../Types/atomicTypes";
+} from "./bladecallerApiTypes";
+import { State, PrecinctID, DistrictID } from "../../types";
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data
     currentRedistrictingResponse: GetCurrentRedistrictingResponse = require("../../../data/iowa.json");
 
-    CreateGuid(request: CreateGuidRequest): CreateGuidResponse {
-        return { GUID: request.state + request.jobType + "123" };
+    createGuid(request: CreateGuidRequest): CreateGuidResponse {
+        return { id: request.state + request.jobType + "123" };
     }
 
-    GetMap(request: GetMapRequest): GetMapResponse {
+    getMap(request: GetMapRequest): GetMapResponse {
         return { state: request.state, map: new Map<PrecinctID, DistrictID>() };
     }
 
-    GetCurrentRedistricting(
+    getCurrentRedistricting(
         request: GetCurrentRedistrictingRequest
     ): GetCurrentRedistrictingResponse {
         switch (request.state) {

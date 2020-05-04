@@ -1,8 +1,8 @@
 import { mockBladecallerProvider } from "./mockBladecallerProvider";
-import { State } from "../../Types/atomicTypes";
+import { State } from "../../types";
 
 test("Provides Mock Iowa Data", () => {
-    const response = mockBladecallerProvider.GetCurrentRedistricting({
+    const response = mockBladecallerProvider.getCurrentRedistricting({
         state: State.Iowa,
     });
     expect(response.state).toBe(State.Iowa);

@@ -6,7 +6,7 @@ import {
     PrecinctID,
     DistrictID,
     GUID,
-} from "./atomicTypes";
+} from "../../types";
 
 export interface CreateGuidRequest {
     state: State;
@@ -14,7 +14,7 @@ export interface CreateGuidRequest {
 }
 
 export interface CreateGuidResponse {
-    GUID: GUID;
+    id: GUID;
 }
 
 export interface GetMapRequest {
