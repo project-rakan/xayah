@@ -21,7 +21,6 @@ export const setCurrentDistrictingLoadingStatus = (
     });
 };
 
-// TODO: write rakan mocks and utilize UpdateCurrentDistricting
 export const updateCurrentDistricting = (
     updates: Map<PrecinctID, DistrictID>
 ): void => {
