@@ -55,7 +55,6 @@ export interface Precinct {
     name: string;
     id: PrecinctID;
     vertices: Cordinate[];
-    district: DistrictID;
 }
 
 export interface Cordinate {
