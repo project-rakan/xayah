@@ -1,9 +1,9 @@
 import {
     BladeCallerProvider,
-    GetCurrentRedistrictingResponse,
+    GetStateInfoResponse,
     CreateGuidRequest,
     GetDistrictingRequest,
-    GetCurrentRedistrictingRequest,
+    GetStateInfoRequest,
 } from "./types";
 import {
     changeCurrentState,
@@ -17,7 +17,7 @@ import { GUID, State, PrecinctID, DistrictID } from "../../types";
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data
-    static currentRedistrictingResponse: GetCurrentRedistrictingResponse = require("../../../data/iowa.json");
+    static currentRedistrictingResponse: GetStateInfoResponse = require("../../../data/iowa.json");
 
     createGuid(request: CreateGuidRequest): Promise<GUID> {
         return Promise.resolve(request.state + request.jobType + "123");
@@ -44,7 +44,7 @@ class MockBladecallerProvider implements BladeCallerProvider {
         }
     }
 
-    getCurrentRedistricting(request: GetCurrentRedistrictingRequest): void {
+    getCurrentRedistricting(request: GetStateInfoRequest): void {
         setCurrentStateLoadingStatus(true);
         switch (request.state) {
             case State.Iowa:

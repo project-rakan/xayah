@@ -1,4 +1,4 @@
-import { GetCurrentRedistrictingResponse } from "../../providers/bladecallerProvider/types";
+import { GetStateInfoResponse } from "../../providers/bladecallerProvider/types";
 
 export enum CurrentStateActionType {
     ChangeCurrentStateAction = "ChangeCurrentStateAction",
@@ -7,7 +7,7 @@ export enum CurrentStateActionType {
 
 interface ChangeCurrentStateAction {
     type: CurrentStateActionType.ChangeCurrentStateAction;
-    payload: GetCurrentRedistrictingResponse;
+    payload: GetStateInfoResponse;
 }
 
 interface SetStateLoadingStatus {
@@ -21,5 +21,5 @@ export type CurrentStateAction =
 
 export interface CurrentState {
     isLoading: boolean;
-    stateInfo: GetCurrentRedistrictingResponse;
+    stateInfo: GetStateInfoResponse;
 }

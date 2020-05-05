@@ -27,11 +27,11 @@ export interface GetDistrictingResponse {
     map: Map<PrecinctID, DistrictID>;
 }
 
-export interface GetCurrentRedistrictingRequest {
+export interface GetStateInfoRequest {
     state: State;
 }
 
-export interface GetCurrentRedistrictingResponse {
+export interface GetStateInfoResponse {
     state: State;
     maxDistricts: number;
     fips: number;
@@ -43,5 +43,5 @@ export interface BladeCallerProvider {
 
     getMap(request: GetDistrictingRequest): void;
 
-    getCurrentRedistricting(request: GetCurrentRedistrictingRequest): void;
+    getCurrentRedistricting(request: GetStateInfoRequest): void;
 }
