@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { App } from "./app";
 import * as serviceWorker from "./serviceWorker";
+// import { StateView } from "./components/stateView/stateView";
+// import { PrecinctSelectScreen } from "./components/precinctSelectScreen/precinctSelectScreen";
+// import { CustomRedistrictOverlay } from "./components/customRedistrictOverlay/customRedistrictOverlay";
+import { AutomateRedistrictingOverlay } from "./components/automateRedistrictingOverlay/automateRedistrictingOverlay";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <AutomateRedistrictingOverlay />
     </React.StrictMode>,
     document.getElementById("root")
 );
