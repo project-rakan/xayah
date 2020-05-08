@@ -18,7 +18,7 @@
 
       
 
-      .stateViewRevisited {
+      .stateView {
 
       display: block;
       position: absolute;
@@ -49,7 +49,7 @@
 
 }
 
-.stateViewRevisited .rakan {
+.stateView .rakan {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -89,7 +89,7 @@
 
 }
 
-.stateViewRevisited .selectedDistrictMap {
+.stateView .selectedDistrictMap {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -129,7 +129,7 @@
 
 }
 
-.stateViewRevisited .group24 {
+.stateView .group24 {
 
       display: block;
       position: absolute;
@@ -160,7 +160,7 @@
 
 }
 
-.stateViewRevisited .group24 .group19 {
+.stateView .group24 .group19 {
 
       display: block;
       position: absolute;
@@ -191,7 +191,7 @@
 
 }
 
-.stateViewRevisited .group24 .group19 .rectangle17 {
+.stateView .group24 .group19 .rectangle17 {
     position: absolute;
       box-sizing: border-box;
       -ms-transform: rotate(0.00deg);
@@ -236,7 +236,7 @@
 
 }
 
-.stateViewRevisited .group24 .group19 .customRedistricting {
+.stateView .group24 .group19 .customRedistricting {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -277,7 +277,7 @@
 
 }
 
-.stateViewRevisited .group24 .addMoreCustomDistricts {
+.stateView .group24 .addMoreCustomDistricts {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -317,7 +317,7 @@
 
 }
 
-.stateViewRevisited .group25 {
+.stateView .group25 {
 
       display: block;
       position: absolute;
@@ -348,7 +348,7 @@
 
 }
 
-.stateViewRevisited .group25 .group20 {
+.stateView .group25 .group20 {
 
       display: block;
       position: absolute;
@@ -379,7 +379,7 @@
 
 }
 
-.stateViewRevisited .group25 .group20 .rectangle18 {
+.stateView .group25 .group20 .rectangle18 {
     position: absolute;
       box-sizing: border-box;
       -ms-transform: rotate(0.00deg);
@@ -424,7 +424,7 @@
 
 }
 
-.stateViewRevisited .group25 .group20 .automatedRedistricting {
+.stateView .group25 .group20 .automatedRedistricting {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -465,7 +465,7 @@
 
 }
 
-.stateViewRevisited .group25 .addMorePotentialRedistrictings {
+.stateView .group25 .addMorePotentialRedistrictings {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -505,7 +505,7 @@
 
 }
 
-.stateViewRevisited .line5 {
+.stateView .line5 {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -535,7 +535,7 @@
 
 }
 
-.stateViewRevisited .goTo {
+.stateView .goTo {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -575,7 +575,7 @@
 
 }
 
-.stateViewRevisited .reviewCustomMaps {
+.stateView .reviewCustomMaps {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -615,7 +615,7 @@
 
 }
 
-.stateViewRevisited .reviewAutomatedMaps {
+.stateView .reviewAutomatedMaps {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -655,7 +655,7 @@
 
 }
 
-.stateViewRevisited .exampleWashington141554 {
+.stateView .exampleWashington141554 {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -695,7 +695,7 @@
 
 }
 
-.stateViewRevisited .example2California162333 {
+.stateView .example2California162333 {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -735,7 +735,7 @@
 
 }
 
-.stateViewRevisited .mutators {
+.stateView .mutators {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -775,7 +775,7 @@
 
 }
 
-.stateViewRevisited .alphaValueBetaValuegammaValueEtaValue {
+.stateView .alphaValueBetaValuegammaValueEtaValue {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -815,7 +815,7 @@
 
 }
 
-.stateViewRevisited .stats {
+.stateView .stats {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -855,7 +855,7 @@
 
 }
 
-.stateViewRevisited .probabilityScore {
+.stateView .probabilityScore {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
