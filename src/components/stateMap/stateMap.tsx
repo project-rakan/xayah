@@ -45,8 +45,9 @@ class StateMap extends React.Component<StateMapProps> {
                 >
                     <PrecinctMap
                         size={this.props.size}
-                        origin={{ lat: bounds.ne.lat, lng: bounds.sw.lng }}
                         max={{ lat: bounds.sw.lat, lng: bounds.ne.lng }}
+                        lat={bounds.ne.lat}
+                        lng={bounds.sw.lng}
                     />
                 </GoogleMapReact>
             </div>

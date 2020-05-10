@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Precinct, PrecinctID, DistrictID, Coordinate } from "../../types";
-import { MapBounds } from "../../providers/mapBoundsProvider/types";
 
 const mapStateToProps = (
     state: RootState
@@ -17,14 +16,15 @@ interface PrecinctMapProps {
     precincts: Precinct[];
     districtMap: Map<PrecinctID, DistrictID>;
     size: { height: number; width: number };
-    origin: Coordinate;
+    lat: number;
+    lng: number;
     max: Coordinate;
 }
 
 class PrecinctMap extends React.Component<PrecinctMapProps> {
     coordinateOffset = (vertex: Coordinate): [number, number] => [
-        vertex.lng - this.props.origin.lng,
-        vertex.lat - this.props.origin.lat,
+        vertex.lng - this.props.lng,
+        vertex.lat - this.props.lat,
     ];
 
     transform = (vertex: Coordinate): string => {
@@ -36,7 +36,11 @@ class PrecinctMap extends React.Component<PrecinctMapProps> {
     };
 
     render(): JSX.Element {
-        return <svg>{/* TODO Render all precincts */}</svg>;
+        return (
+            <svg width={this.props.size.width} height={this.props.size.height}>
+                {/* TODO Render all precincts */}
+            </svg>
+        );
     }
 }
 
