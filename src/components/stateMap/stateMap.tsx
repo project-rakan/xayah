@@ -5,6 +5,7 @@ import { RootState } from "../../redux/store";
 import { State } from "../../types";
 import { fitBounds } from "google-map-react/utils";
 import { cachedMapBoundsProvider } from "../../providers/mapBoundsProvider/mapBoundsProvider";
+import { connectedPrecinctMap as PrecinctMap } from "./precinctMap";
 
 const mapStateToProps = (state: RootState): { state: State } => ({
     state: state.currentState.stateInfo.state,
@@ -42,7 +43,11 @@ class StateMap extends React.Component<StateMapProps> {
                     defaultCenter={center}
                     defaultZoom={zoom}
                 >
-                    {/* TODO: draw precinct map svg here */}
+                    <PrecinctMap
+                        size={this.props.size}
+                        origin={{ lat: bounds.ne.lat, lng: bounds.sw.lng }}
+                        max={{ lat: bounds.sw.lat, lng: bounds.ne.lng }}
+                    />
                 </GoogleMapReact>
             </div>
         );
