@@ -2,7 +2,7 @@ import React from "react";
 import GoogleMapReact from "google-map-react";
 import { connect } from "react-redux";
 import { RootState } from "../../redux/store";
-import { Coordinate, State } from "../../types";
+import { State } from "../../types";
 import { fitBounds } from "google-map-react/utils";
 import { cachedMapBoundsProvider } from "../../providers/mapBoundsProvider/mapBoundsProvider";
 
@@ -18,23 +18,15 @@ export interface StateMapProps {
 }
 
 class StateMap extends React.Component<StateMapProps> {
-    center: Coordinate;
-    zoom: number;
-
-    constructor(props: StateMapProps) {
-        super(props);
-        const bounds = cachedMapBoundsProvider.getMapBoundsFromState(
-            this.props.state
-        );
-        const { center, zoom } = fitBounds(bounds, this.props.size);
-        this.center = center;
-        this.zoom = zoom;
-    }
-
     render(): JSX.Element {
         if (!process.env.REACT_APP_GOOGLE_API_KEY) {
             throw new Error("No Google Maps API Key defined");
         }
+
+        const bounds = cachedMapBoundsProvider.getMapBoundsFromState(
+            this.props.state
+        );
+        const { center, zoom } = fitBounds(bounds, this.props.size);
 
         return (
             <div
@@ -47,8 +39,8 @@ class StateMap extends React.Component<StateMapProps> {
                     bootstrapURLKeys={{
                         key: process.env.REACT_APP_GOOGLE_API_KEY,
                     }}
-                    defaultCenter={this.center}
-                    defaultZoom={this.zoom}
+                    defaultCenter={center}
+                    defaultZoom={zoom}
                 >
                     {/* TODO: draw precinct map svg here */}
                 </GoogleMapReact>
