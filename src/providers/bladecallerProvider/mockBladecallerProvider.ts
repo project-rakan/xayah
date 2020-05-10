@@ -25,7 +25,7 @@ class MockBladecallerProvider implements BladeCallerProvider {
         return Promise.resolve(request.state + request.jobType + "123");
     }
 
-    getMap(request: GetDistrictingRequest): void {
+    getDistricting(request: GetDistrictingRequest): void {
         setCurrentDistrictingLoadingStatus(true);
         switch (request.state) {
             case State.Iowa:
@@ -46,7 +46,7 @@ class MockBladecallerProvider implements BladeCallerProvider {
         }
     }
 
-    getCurrentRedistricting(request: GetStateInfoRequest): void {
+    getStateInfo(request: GetStateInfoRequest): void {
         setCurrentStateLoadingStatus(true);
         switch (request.state) {
             case State.Iowa:

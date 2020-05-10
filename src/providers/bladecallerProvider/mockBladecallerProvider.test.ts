@@ -3,7 +3,7 @@ import { State, JobType, GUID } from "../../types";
 import { store } from "../../redux/store";
 
 test("Provides Mock Iowa Info", () => {
-    mockBladecallerProvider.getCurrentRedistricting({
+    mockBladecallerProvider.getStateInfo({
         state: State.Iowa,
     });
 
@@ -15,7 +15,7 @@ test("Provides Mock Iowa Info", () => {
 });
 
 test("Provides Mock Iowa Districts", () => {
-    mockBladecallerProvider.getMap({
+    mockBladecallerProvider.getDistricting({
         state: State.Iowa,
         mapId: 0,
     });
