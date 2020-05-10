@@ -6,14 +6,16 @@ import {
     GetStateInfoRequest,
 } from "./types";
 import {
-    changeCurrentState,
     setCurrentStateLoadingStatus,
+    setStateInfo,
 } from "../../redux/currentState/actionCreators";
 import {
     setCurrentDistrictingLoadingStatus,
     replaceCurrentDistricting,
 } from "../../redux/currentDistricting/actionCreators";
 import { GUID, State, PrecinctID, DistrictID } from "../../types";
+
+// TODO remove redux dependency and refactor to utils
 
 class MockBladecallerProvider implements BladeCallerProvider {
     // Observe singleton design pattern for mock data
@@ -48,7 +50,7 @@ class MockBladecallerProvider implements BladeCallerProvider {
         setCurrentStateLoadingStatus(true);
         switch (request.state) {
             case State.Iowa:
-                changeCurrentState(
+                setStateInfo(
                     MockBladecallerProvider.currentRedistrictingResponse
                 );
                 setCurrentStateLoadingStatus(false);
