@@ -4,7 +4,7 @@ import { State } from "../../types";
 class CachedMapBoundsProvider implements MapBoundsProvider {
     static stateMapBounds: {
         [key: string]: MapBounds;
-    } = require("../../../data/stateMapBounds.json");
+    } = require("./mapBounds.json");
 
     getMapBoundsFromState = (state: State): MapBounds => {
         return CachedMapBoundsProvider.stateMapBounds[state];
