@@ -6,6 +6,8 @@ import {
     updateMapScore,
 } from "../../redux/mapScores/actionCreators";
 
+// TODO remove redux dependency and refactor to utils
+
 class MockRakanProvider implements RakanProvider {
     startMapJob(request: StartMapJobRequest): void {
         switch (request.state) {

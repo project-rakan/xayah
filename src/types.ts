@@ -54,10 +54,10 @@ export enum State {
 export interface Precinct {
     name: string;
     id: PrecinctID;
-    vertices: Cordinate[];
+    vertices: Coordinate[];
 }
 
-export interface Cordinate {
+export interface Coordinate {
     lat: Latitude;
     lng: Longitude;
 }
