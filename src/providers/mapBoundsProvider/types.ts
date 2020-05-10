@@ -1,8 +1,8 @@
-import { Cordinate, State } from "../../types";
+import { Coordinate, State } from "../../types";
 
 export interface MapBounds {
-    ne: Cordinate;
-    sw: Cordinate;
+    ne: Coordinate;
+    sw: Coordinate;
 }
 
 export interface MapBoundsProvider {

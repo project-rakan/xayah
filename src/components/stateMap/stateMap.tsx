@@ -2,7 +2,7 @@ import React from "react";
 import GoogleMapReact from "google-map-react";
 import { connect } from "react-redux";
 import { RootState } from "../../redux/store";
-import { Cordinate, State } from "../../types";
+import { Coordinate, State } from "../../types";
 import { fitBounds } from "google-map-react/utils";
 import { cachedMapBoundsProvider } from "../../providers/mapBoundsProvider/mapBoundsProvider";
 
@@ -18,7 +18,7 @@ export interface StateMapProps {
 }
 
 class StateMap extends React.Component<StateMapProps> {
-    center: Cordinate;
+    center: Coordinate;
     zoom: number;
 
     constructor(props: StateMapProps) {
