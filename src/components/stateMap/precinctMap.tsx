@@ -2,12 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Precinct, PrecinctID, DistrictID, Coordinate } from "../../types";
+import { connectedPrecinctPolygon as PrecinctPolygon } from "./precinctPolygon";
+import { getSize } from "../../utils/latLngMath";
 
 const mapStateToProps = (
     state: RootState
-): { precincts: Precinct[]; districtMap: Map<PrecinctID, DistrictID> } => ({
+): {
+    precincts: Precinct[];
+    districtMap: Map<PrecinctID, DistrictID>;
+    zoom: number;
+} => ({
     precincts: state.currentState.stateInfo.precincts,
     districtMap: state.currentDistricting.districtMap,
+    zoom: state.currentState.zoom,
 });
 
 const mapDispatchToProps = {};
@@ -15,30 +22,44 @@ const mapDispatchToProps = {};
 interface PrecinctMapProps {
     precincts: Precinct[];
     districtMap: Map<PrecinctID, DistrictID>;
-    size: { height: number; width: number };
     lat: number;
     lng: number;
     max: Coordinate;
+    zoom: number;
 }
 
 class PrecinctMap extends React.Component<PrecinctMapProps> {
-    coordinateOffset = (vertex: Coordinate): [number, number] => [
-        vertex.lng - this.props.lng,
-        vertex.lat - this.props.lat,
-    ];
+    // const district = this.props.districtMap.get(precinct.id);
 
-    transform = (vertex: Coordinate): string => {
-        const maxOffset = this.coordinateOffset(this.props.max);
-        const offset = this.coordinateOffset(vertex);
-        return `${(offset[0] / maxOffset[0]) * this.props.size.width},${
-            (offset[1] / maxOffset[1]) * this.props.size.height
-        }`;
+    // if (district === undefined) {
+    //     throw new Error("unassigned Precinct " + precinct.id);
+    // }
+
+    public changeZoom = (zoom: number): void => {
+        this.setState({ zoom: zoom });
     };
 
     render(): JSX.Element {
+        console.log("precinctMap zoom " + this.props.zoom);
+        const origin = {
+            lat: this.props.lat,
+            lng: this.props.lng,
+        };
+        const size = getSize(origin, this.props.max, this.props.zoom);
         return (
-            <svg width={this.props.size.width} height={this.props.size.height}>
-                {/* TODO Render all precincts */}
+            <svg height={size.height} width={size.width}>
+                {this.props.precincts.map(
+                    (precinct: Precinct, index: number) => (
+                        <PrecinctPolygon
+                            canvasSize={size}
+                            origin={origin}
+                            max={this.props.max}
+                            key={index}
+                            precinct={precinct}
+                            districtColor="None"
+                        />
+                    )
+                )}
             </svg>
         );
     }
