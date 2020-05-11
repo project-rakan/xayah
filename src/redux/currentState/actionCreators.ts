@@ -1,5 +1,5 @@
 import { store } from "../store";
-import { CurrentStateActionType, StateInfo } from "./types";
+import { CurrentStateActionType, StateInfo, CurrentStateAction } from "./types";
 
 // TODO: The response type ought to be abstracted away from the redux model.
 
@@ -16,3 +16,8 @@ export const setStateInfo = (stateInfo: StateInfo): void => {
         payload: stateInfo,
     });
 };
+
+export const setZoom = (zoom: number): CurrentStateAction => ({
+    type: CurrentStateActionType.SetZoom,
+    payload: zoom,
+});
