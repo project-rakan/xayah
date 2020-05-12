@@ -47,7 +47,11 @@ Container.prototype.dispatch = function(name) {
 };
 
 Container.prototype.connect = function (options) {
-    return new Connection(options, this).connect();
+    this.connection = new Connection(options, this);
+    return this.connection.connect();
+};
+Container.prototype.disconnect = function () {
+    this.connection.close();
 };
 
 Container.prototype.create_connection = function (options) {

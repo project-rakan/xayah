@@ -1,11 +1,5 @@
 {
-  "_args": [
-    [
-      "rhea@1.0.21",
-      "C:\\Users\\Colin Topper\\Documents\\xayah"
-    ]
-  ],
-  "_from": "rhea@1.0.21",
+  "_from": "rhea",
   "_id": "rhea@1.0.21",
   "_inBundle": false,
   "_integrity": "sha512-9ddxyJR0nlWmynukzZTWN+bSYWu7KLHVMkIH/7PpFG5RHfV5t7zXIfZ6rqJSJe9wBAgnNr2Xz41KM2nPujWiFQ==",
@@ -14,20 +8,22 @@
     "ms": "2.1.2"
   },
   "_requested": {
-    "type": "version",
+    "type": "tag",
     "registry": true,
-    "raw": "rhea@1.0.21",
+    "raw": "rhea",
     "name": "rhea",
     "escapedName": "rhea",
-    "rawSpec": "1.0.21",
+    "rawSpec": "",
     "saveSpec": null,
-    "fetchSpec": "1.0.21"
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/rhea/-/rhea-1.0.21.tgz",
-  "_spec": "1.0.21",
+  "_shasum": "30dba77711fab56677e6c51821680327b4e0845d",
+  "_spec": "rhea",
   "_where": "C:\\Users\\Colin Topper\\Documents\\xayah",
   "browser": {
     "fs": false,
@@ -37,9 +33,12 @@
   "bugs": {
     "url": "https://github.com/amqp/rhea/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
-    "debug": "0.8.0 - 3.5.0"
+    "debug": "0.8.0 - 3.5.0",
+    "stream-combiner2": "^1.1.1"
   },
+  "deprecated": false,
   "description": "reactive AMQP 1.0 library",
   "devDependencies": {
     "@types/debug": "^0.0.30",
@@ -72,7 +71,7 @@
     "browserify": "browserify -r .:rhea -o dist/rhea.js",
     "coverage": "istanbul cover _mocha -- test/*.ts --compilers ts-node/register",
     "lint": "eslint lib/*.js",
-    "prepare": "npm run lint && npm run tsc",
+    "prepare": "",
     "run-examples": "require-self && mocha examples/test_examples.js",
     "test": "npm run lint && npm run tsc && mocha -r ts-node/register ./test/*.ts",
     "tsc": "tsc",
