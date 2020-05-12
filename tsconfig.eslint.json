@@ -6,6 +6,7 @@
       "src/**/*.ts",
       "src/**/*.json",
       "src/**/*.js",
+      "src/*.js",
       "src/**/*.css",
       "./*.js",
       "./*.json",
