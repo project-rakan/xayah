@@ -18,7 +18,7 @@ import {
 const axios = require("axios").default;
 let guidNum = 0;
 
-class AxiosBladeCallerProvider implements BladeCallerProvider {
+class AxiosBladecallerProvider implements BladeCallerProvider {
     getStateInfoLocation(stateCode: State): string {
         return `http://bladecaller_database/stateinfo/${stateCode}.json`;
     }
@@ -71,4 +71,4 @@ class AxiosBladeCallerProvider implements BladeCallerProvider {
         }
     }
 }
-export const axiosBladeCallerProvider = new AxiosBladeCallerProvider();
+export const axiosBladecallerProvider = new AxiosBladecallerProvider();
