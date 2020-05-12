@@ -1,6 +1,6 @@
 import { MapScore, MapScoresActionType, MapScoreUpdate } from "./types";
-import { store } from "../store";
 import { GUID } from "../../types";
+import { store } from "../..";
 
 export const addMapScore = (job: MapScore): void => {
     store.dispatch({
