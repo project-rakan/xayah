@@ -16,14 +16,14 @@ import {
 import axios from "axios";
 
 class AxiosBladecallerProvider implements BladeCallerProvider {
-    createGuid(request: CreateGuidRequest): Promise<GUID> {
+    createGuid = async (request: CreateGuidRequest): Promise<GUID> => {
         return axios
             .get(
                 `http://bladecaller_database/guid/?state=${request.state}&jobType=${request.jobType}&format=json`
             )
             .then((response) => response.data);
-    }
-    getDistricting(request: GetDistrictingRequest): void {
+    };
+    getDistricting = (request: GetDistrictingRequest): void => {
         setCurrentDistrictingLoadingStatus(true);
         axios
             .get(
@@ -36,8 +36,8 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                 });
             });
         setCurrentStateLoadingStatus(false);
-    }
-    getStateInfo(request: GetStateInfoRequest): void {
+    };
+    getStateInfo = (request: GetStateInfoRequest): void => {
         setCurrentStateLoadingStatus(true);
         axios
             .get(`http://bladecaller_database/stateinfo/${request.state}.json`) // TODO verfify this url is correct
@@ -45,6 +45,6 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                 setStateInfo(response.data);
             });
         setCurrentStateLoadingStatus(false);
-    }
+    };
 }
 export const axiosBladecallerProvider = new AxiosBladecallerProvider();
