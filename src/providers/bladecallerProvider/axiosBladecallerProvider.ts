@@ -19,6 +19,7 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
     createGuid = async (request: CreateGuidRequest): Promise<GUID> => {
         return axios
             .get(
+                // use localhost for beta release
                 `http://127.0.0.1:8000/guid/?state=${request.state}&jobType=${request.jobType}&format=json`
             )
             .then((response) => response.data);
@@ -28,6 +29,7 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
         const statename = StateName[request.state];
         axios
             .get(
+                // use localhost for beta release
                 `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.districts.json`
             )
             .then((response) => {
@@ -43,6 +45,7 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
         const statename = StateName[request.state];
         axios
             .get(
+                // use localhost for beta release
                 `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.json`
             )
             .then((response) => {
