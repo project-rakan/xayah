@@ -6,7 +6,7 @@ import {
     GetStateInfoRequest,
     GetDistrictingResponse,
 } from "./types";
-import { GUID, State } from "../../types";
+import { GUID, State, StateName } from "../../types";
 import {
     setStateInfo,
     setCurrentStateLoadingStatus,
@@ -20,10 +20,12 @@ let guidNum = 0;
 
 class AxiosBladecallerProvider implements BladeCallerProvider {
     getStateInfoLocation(stateCode: State): string {
-        return `http://bladecaller_database/stateinfo/${stateCode}.json`;
+        return `http://bladecaller_database/stateinfo/${StateName[stateCode]}/${StateName[stateCode]}json`;
+        // return `http://localhost:8000/stateinfo/${StateName[stateCode]}/${StateName[stateCode]}.json`;
     }
     getStateDistrictLocation(stateCode: State): string {
-        return `http://bladecaller_database/stateinfo/${stateCode}.districts.json`;
+        return `http://bladecaller_database/stateinfo/${StateName[stateCode]}/${StateName[stateCode]}.districts.json`;
+        // return `http://localhost:8000/stateinfo/${StateName[stateCode]}/${StateName[stateCode]}.districts.json`;
     }
     createGuid(request: CreateGuidRequest): Promise<GUID> {
         guidNum++;
@@ -42,6 +44,10 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                             districtMap: response.map,
                             mapId: 0,
                         });
+                    })
+                    .catch((error: string) => {
+                        throw error;
+                        console.log("error: ", error);
                     });
                 setCurrentStateLoadingStatus(false);
                 break;
