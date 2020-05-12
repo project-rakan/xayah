@@ -1,13 +1,19 @@
-import { GetStateInfoResponse } from "../../providers/bladecallerProvider/types";
+import { State, Precinct } from "../../types";
 
 export enum CurrentStateActionType {
-    ChangeCurrentStateAction = "ChangeCurrentStateAction",
+    SetStateInfo = "SetStateInfo",
     SetStateLoadingStatus = "SetStateLoadingStatus",
+    SetZoom = "SetZoom",
 }
 
-interface ChangeCurrentStateAction {
-    type: CurrentStateActionType.ChangeCurrentStateAction;
-    payload: GetStateInfoResponse;
+interface SetZoomAction {
+    type: CurrentStateActionType.SetZoom;
+    payload: number;
+}
+
+interface SetStateInfo {
+    type: CurrentStateActionType.SetStateInfo;
+    payload: StateInfo;
 }
 
 interface SetStateLoadingStatus {
@@ -16,10 +22,19 @@ interface SetStateLoadingStatus {
 }
 
 export type CurrentStateAction =
-    | ChangeCurrentStateAction
-    | SetStateLoadingStatus;
+    | SetStateInfo
+    | SetStateLoadingStatus
+    | SetZoomAction;
+
+export interface StateInfo {
+    state: State;
+    maxDistricts: number;
+    fips: number;
+    precincts: Precinct[];
+}
 
 export interface CurrentState {
     isLoading: boolean;
-    stateInfo: GetStateInfoResponse;
+    stateInfo: StateInfo;
+    zoom: number;
 }

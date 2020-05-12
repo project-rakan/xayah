@@ -1,5 +1,22 @@
 import React from "react";
 import "./precinctSelectScreen.css";
+import { IStackTokens, Stack } from "office-ui-fabric-react/lib/Stack";
+import {
+    Dropdown,
+    DropdownMenuItemType,
+    IDropdownStyles,
+    IDropdownOption,
+} from "office-ui-fabric-react/lib/Dropdown";
+import { State } from "../../types";
+
+const dropdownStyles: Partial<IDropdownStyles> = {
+    dropdown: { width: 140 },
+};
+
+const options: IDropdownOption[] = Object.values(State).map((state) => ({
+    key: state,
+    text: state,
+}));
 
 export class PrecinctSelectScreen extends React.Component {
     render(): JSX.Element {
@@ -17,6 +34,7 @@ export class PrecinctSelectScreen extends React.Component {
                     data-layer="9f432d77-5d86-4f99-9a7e-bf4044f27853"
                     className="pleaseAddAtLeastTwoPrecinctsInOrderToFormADistrict"
                 >
+                    <br />
                     Please add at least two precincts in <br />
                     order to form a district
                     <br />
@@ -25,6 +43,7 @@ export class PrecinctSelectScreen extends React.Component {
                     data-layer="2ea93f76-b1c5-4208-92ab-2a80b6d6e8a0"
                     className="warnings"
                 >
+                    <br />
                     WARNINGS
                 </div>
                 <div
@@ -83,7 +102,12 @@ export class PrecinctSelectScreen extends React.Component {
                     data-layer="0f666055-f3fb-4b99-b4c8-a0aec2098db4"
                     className="goTo"
                 >
-                    Go To:{" "}
+                    <Dropdown
+                        placeholder="Select an option"
+                        label="Go To:"
+                        options={options}
+                        styles={dropdownStyles}
+                    />
                 </div>
                 <div
                     data-layer="29a9b3e3-8ebe-420f-8f0b-f44ac416da4f"

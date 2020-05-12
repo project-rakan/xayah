@@ -41,7 +41,7 @@ export interface GetStateInfoResponse {
 export interface BladeCallerProvider {
     createGuid(request: CreateGuidRequest): Promise<GUID>;
 
-    getMap(request: GetDistrictingRequest): void;
+    getDistricting(request: GetDistrictingRequest): void;
 
-    getCurrentRedistricting(request: GetStateInfoRequest): void;
+    getStateInfo(request: GetStateInfoRequest): void;
 }

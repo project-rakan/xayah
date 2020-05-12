@@ -2,15 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-// import { StateView } from "./components/stateView/stateView";
-// import { PrecinctSelectScreen } from "./components/precinctSelectScreen/precinctSelectScreen";
-// import { CustomRedistrictOverlay } from "./components/customRedistrictOverlay/customRedistrictOverlay";
-import { AutomateRedistrictingOverlay } from "./components/automateRedistrictingOverlay/automateRedistrictingOverlay";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import { connectedRouter as Router } from "./components/router";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <AutomateRedistrictingOverlay />
-    </React.StrictMode>,
+    <Provider store={store}>
+        <Router />
+    </Provider>,
     document.getElementById("root")
 );
 
