@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { App } from "./app";
 import * as serviceWorker from "./serviceWorker";
-import { axiosBladecallerProvider } from "./providers/bladecallerProvider/axiosBladecallerProvider";
-import { JobType, State } from "./types";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
