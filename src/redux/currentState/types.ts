@@ -3,6 +3,12 @@ import { State, Precinct } from "../../types";
 export enum CurrentStateActionType {
     SetStateInfo = "SetStateInfo",
     SetStateLoadingStatus = "SetStateLoadingStatus",
+    SetZoom = "SetZoom",
+}
+
+interface SetZoomAction {
+    type: CurrentStateActionType.SetZoom;
+    payload: number;
 }
 
 interface SetStateInfo {
@@ -15,7 +21,10 @@ interface SetStateLoadingStatus {
     payload: boolean;
 }
 
-export type CurrentStateAction = SetStateInfo | SetStateLoadingStatus;
+export type CurrentStateAction =
+    | SetStateInfo
+    | SetStateLoadingStatus
+    | SetZoomAction;
 
 export interface StateInfo {
     state: State;
@@ -27,4 +36,5 @@ export interface StateInfo {
 export interface CurrentState {
     isLoading: boolean;
     stateInfo: StateInfo;
+    zoom: number;
 }
