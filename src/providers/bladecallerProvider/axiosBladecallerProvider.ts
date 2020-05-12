@@ -22,7 +22,10 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                 // use localhost for beta release
                 `http://127.0.0.1:8000/guid/?state=${request.state}&jobType=${request.jobType}&format=json`
             )
-            .then((response) => response.data);
+            .then((response) => response.data)
+            .catch((error) => {
+                console.error(error);
+            });
     };
     getDistricting = (request: GetDistrictingRequest): void => {
         setCurrentDistrictingLoadingStatus(true);
@@ -37,6 +40,9 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                     districtMap: response.data.map,
                     mapId: 0, // TODO adjust mapId correctly - no required for beta release
                 });
+            })
+            .catch((error) => {
+                console.error(error);
             });
         setCurrentStateLoadingStatus(false);
     };
@@ -50,6 +56,9 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
             )
             .then((response) => {
                 setStateInfo(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
             });
         setCurrentStateLoadingStatus(false);
     };
