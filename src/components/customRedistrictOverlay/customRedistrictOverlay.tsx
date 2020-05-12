@@ -11,11 +11,18 @@ import {
     setEta,
     setPage,
 } from "../../redux/userInput/actionCreators";
-import { UserInput } from "../../redux/userInput/types";
 import {} from "@uifabric/react-hooks";
 import { Page } from "../../types";
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (
+    state: RootState
+): {
+    alpha: number;
+    beta: number;
+    gamma: number;
+    eta: number;
+    mapName: string;
+} => ({
     alpha: state.userInput.alpha,
     beta: state.userInput.beta,
     gamma: state.userInput.gamma,
@@ -65,7 +72,7 @@ export class CustomRedistrictOverlay extends React.Component<
                 <div
                     data-layer="2e84b8f9-40c7-4778-95a0-4ef8300d3ae2"
                     className="alphaValueBetaValuegammaValueEtaValueMapName"
-                    onClick={(e) => this.props.setPage(Page.StateView)}
+                    onClick={(): void => this.props.setPage(Page.StateView)}
                 >
                     <TextField
                         label="Alpha"

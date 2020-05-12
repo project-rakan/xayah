@@ -8,7 +8,6 @@ import {
 import { State, Page } from "../../types";
 import { connect } from "react-redux";
 import { setPage } from "../../redux/userInput/actionCreators";
-import { RootState } from "../../redux/store";
 import { connectedStateMap as StateMap } from "../stateMap/stateMap";
 
 const dropdownStyles: Partial<IDropdownStyles> = {
@@ -20,7 +19,7 @@ const options: IDropdownOption[] = Object.values(State).map((state) => ({
     text: state,
 }));
 
-const mapStateToProps = (state: RootState) => ({});
+const mapStateToProps = (): {} => ({});
 
 const mapDispatchToProps = {
     setPage: setPage,
@@ -86,7 +85,7 @@ class StateView extends React.Component<StateViewProps> {
                         <div
                             data-layer="ce9a878e-4eff-4012-b274-b2afac58130d"
                             className="customRedistricting"
-                            onClick={(e) =>
+                            onClick={(): void =>
                                 this.props.setPage(Page.CustomRedistrictOverlay)
                             }
                         >
@@ -119,7 +118,7 @@ class StateView extends React.Component<StateViewProps> {
                         <div
                             data-layer="6afb2a82-9085-41a8-aafa-f91efa642d48"
                             className="automatedRedistricting"
-                            onClick={(e) =>
+                            onClick={(): void =>
                                 this.props.setPage(
                                     Page.AutomateRedistrictingOverlay
                                 )

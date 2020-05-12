@@ -7,7 +7,7 @@ import { connectedStateView as StateView } from "./stateView/stateView";
 import { PrecinctSelectScreen } from "./precinctSelectScreen/precinctSelectScreen";
 import { Page } from "../types";
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState): { page: Page } => ({
     page: state.userInput.page,
 });
 

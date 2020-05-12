@@ -1,5 +1,4 @@
 import { UserInput, UserInputAction, UserInputActionType } from "./types";
-import { stat } from "fs";
 import { Page } from "../../types";
 
 const initialState = {

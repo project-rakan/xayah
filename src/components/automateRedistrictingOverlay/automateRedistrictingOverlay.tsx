@@ -11,11 +11,18 @@ import {
     setEta,
     setPage,
 } from "../../redux/userInput/actionCreators";
-import { UserInput } from "../../redux/userInput/types";
 import {} from "@uifabric/react-hooks";
 import { Page } from "../../types";
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (
+    state: RootState
+): {
+    alpha: number;
+    beta: number;
+    gamma: number;
+    eta: number;
+    mapName: string;
+} => ({
     alpha: state.userInput.alpha,
     beta: state.userInput.beta,
     gamma: state.userInput.gamma,
@@ -65,7 +72,7 @@ class AutomateRedistrictingOverlay extends React.Component<
                 <div
                     data-layer="12315a68-462c-47bc-9161-68b960ab181d"
                     className="rectangle17"
-                    onClick={(e) => this.props.setPage(Page.StateView)}
+                    onClick={(): void => this.props.setPage(Page.StateView)}
                 ></div>
                 <div
                     data-layer="c131fc01-cc7c-4659-8b1f-4fea6962c855"
