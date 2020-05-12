@@ -13,6 +13,7 @@ const initialState: CurrentState = {
         fips: 0,
         precincts: [],
     },
+    zoom: 0,
 };
 
 export const currentStateReducer = (
@@ -24,11 +25,19 @@ export const currentStateReducer = (
             return {
                 isLoading: state.isLoading,
                 stateInfo: action.payload,
+                zoom: state.zoom,
             };
         case CurrentStateActionType.SetStateLoadingStatus:
             return {
                 isLoading: action.payload,
                 stateInfo: state.stateInfo,
+                zoom: state.zoom,
+            };
+        case CurrentStateActionType.SetZoom:
+            return {
+                isLoading: state.isLoading,
+                stateInfo: state.stateInfo,
+                zoom: action.payload,
             };
         default:
             return state;

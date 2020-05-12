@@ -5,11 +5,13 @@ import { App } from "./app";
 import * as serviceWorker from "./serviceWorker";
 import { axiosBladecallerProvider } from "./providers/bladecallerProvider/axiosBladecallerProvider";
 import { JobType, State } from "./types";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 ReactDOM.render(
-    <React.StrictMode>
+    <Provider store={store}>
         <App />
-    </React.StrictMode>,
+    </Provider>,
     document.getElementById("root")
 );
 
