@@ -15,15 +15,6 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-axiosBladecallerProvider.getDistricting({
-    state: State.Iowa,
-    mapId: 1,
-});
-
-axiosBladecallerProvider.getStateInfo({
-    state: State.Iowa,
-});
-
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
