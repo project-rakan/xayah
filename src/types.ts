@@ -67,6 +67,13 @@ export enum JobType {
     ScoreMap = "ScoreMap",
 }
 
+export enum Page {
+    StateView,
+    AutomateRedistrictingOverlay,
+    CustomRedistrictOverlay,
+    PrecintSelectScreen,
+}
+
 export type PrecinctID = number;
 export type DistrictID = number;
 export type MapID = number;
