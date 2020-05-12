@@ -1,6 +1,6 @@
 import { CurrentDistrictingActionType } from "./types";
 import { PrecinctID, DistrictID, MapID } from "../../types";
-import { store } from "../..";
+import { store } from "../store";
 
 export const replaceCurrentDistricting = (newMap: {
     districtMap: Map<PrecinctID, DistrictID>;

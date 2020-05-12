@@ -1,5 +1,5 @@
 import { CurrentStateActionType, StateInfo, CurrentStateAction } from "./types";
-import { store } from "../..";
+import { store } from "../store";
 
 // TODO: The response type ought to be abstracted away from the redux model.
 

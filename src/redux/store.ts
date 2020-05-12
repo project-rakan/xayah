@@ -1,16 +1,18 @@
+import { createStore, combineReducers } from "redux";
 import { currentStateReducer } from "./currentState/reducers";
 import { currentDistrictingReducer } from "./currentDistricting/reducers";
 import { mapJobsReducer } from "./mapJobs/reducers";
 import { mapScoresReducer } from "./mapScores/reducers";
-import { combineReducers } from "redux";
+import { userInputReducer } from "./userInput/reducers";
 
-export const reducers = {
+const rootReducer = combineReducers({
     currentState: currentStateReducer,
     currentDistricting: currentDistrictingReducer,
     mapJobs: mapJobsReducer,
     mapScores: mapScoresReducer,
-};
+    userInput: userInputReducer,
+});
 
-const rootReducer = combineReducers(reducers);
+export const store = createStore(rootReducer);
 
 export type RootState = ReturnType<typeof rootReducer>;

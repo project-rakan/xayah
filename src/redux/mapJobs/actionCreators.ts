@@ -1,6 +1,6 @@
 import { MapJobsActionType, MapJob, MapJobUpdate } from "./types";
 import { GUID } from "../../types";
-import { store } from "../..";
+import { store } from "../store";
 
 export const addMapJob = (job: MapJob): void => {
     store.dispatch({
