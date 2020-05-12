@@ -35,10 +35,6 @@ class PrecinctMap extends React.Component<PrecinctMapProps> {
     //     throw new Error("unassigned Precinct " + precinct.id);
     // }
 
-    public changeZoom = (zoom: number): void => {
-        this.setState({ zoom: zoom });
-    };
-
     render(): JSX.Element {
         console.log("precinctMap zoom " + this.props.zoom);
         const origin = {
