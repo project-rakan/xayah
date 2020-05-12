@@ -26,4 +26,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Exceptions
-!/node_modules/rhea/
+!node_modules/rhea
