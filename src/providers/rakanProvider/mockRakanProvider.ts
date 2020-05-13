@@ -6,15 +6,13 @@ import {
     updateMapScore,
 } from "../../redux/mapScores/actionCreators";
 
-// TODO remove redux dependency and refactor to utils
-
 class MockRakanProvider implements RakanProvider {
     startMapJob(request: StartMapJobRequest): void {
         switch (request.state) {
             case State.Iowa:
                 // Create new map job
                 addMapJob({
-                    id: "IAStartMap123",
+                    id: request.id,
                     state: request.state,
                     alpha: request.alpha,
                     beta: request.beta,
@@ -27,13 +25,13 @@ class MockRakanProvider implements RakanProvider {
                 const mapUpdate = new Map();
                 mapUpdate.set(1, 1);
                 updateMapJob({
-                    id: "IAStartMap123",
+                    id: request.id,
                     map: mapUpdate,
                 });
 
                 // finish async updates of map job
                 updateMapJob({
-                    id: "IAStartMap123",
+                    id: request.id,
                     mapId: 1,
                 });
                 break;
@@ -47,7 +45,7 @@ class MockRakanProvider implements RakanProvider {
         switch (request.state) {
             case State.Iowa:
                 addMapScore({
-                    id: "IAScoreMap123",
+                    id: request.id,
                     state: request.state,
                     map: request.map,
                     alpha: request.alpha,
@@ -56,7 +54,7 @@ class MockRakanProvider implements RakanProvider {
                     eta: request.eta,
                 });
                 updateMapScore({
-                    id: "IAScoreMap123",
+                    id: request.id,
                     score: 1,
                     probability: 0.5,
                 });

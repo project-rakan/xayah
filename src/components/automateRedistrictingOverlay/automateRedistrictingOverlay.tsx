@@ -12,7 +12,8 @@ import {
     setPage,
 } from "../../redux/userInput/actionCreators";
 import {} from "@uifabric/react-hooks";
-import { Page } from "../../types";
+import { Page, State } from "../../types";
+import { axiosRakanProvider } from "../../providers/rakanProvider/axiosRakanProvider";
 
 const mapStateToProps = (
     state: RootState
@@ -72,7 +73,17 @@ class AutomateRedistrictingOverlay extends React.Component<
                 <div
                     data-layer="12315a68-462c-47bc-9161-68b960ab181d"
                     className="rectangle17"
-                    onClick={(): void => this.props.setPage(Page.StateView)}
+                    onClick={(): void => {
+                        this.props.setPage(Page.StateView);
+                        axiosRakanProvider.startMapJob({
+                            alpha: this.props.alpha,
+                            beta: this.props.beta,
+                            gamma: this.props.gamma,
+                            eta: this.props.eta,
+                            id: "1",
+                            state: State.Iowa,
+                        });
+                    }}
                 ></div>
                 <div
                     data-layer="c131fc01-cc7c-4659-8b1f-4fea6962c855"
