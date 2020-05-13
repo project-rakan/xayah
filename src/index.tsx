@@ -5,6 +5,8 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { connectedRouter as Router } from "./components/router";
+import { rheaRakanProvider } from "./providers/rakanProvider/rheaRakanProvider";
+import { State } from "./types";
 
 ReactDOM.render(
     <Provider store={store}>
@@ -12,6 +14,15 @@ ReactDOM.render(
     </Provider>,
     document.getElementById("root")
 );
+
+rheaRakanProvider.startMapJob({
+    alpha: 0,
+    beta: 0,
+    gamma: 0,
+    eta: 0,
+    id: "1",
+    state: State.Iowa,
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

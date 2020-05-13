@@ -8,10 +8,10 @@
 // [eventHubPath]/ConsumerGroups/[consumerGroup]/Partitions/[partitionId]
 // Endpoint=sb://<eventhub>.servicebus.windows.net/;SharedAccessKeyName=<sharedAccessKeyName>;SharedAccessKey=<sharedAccessKey>;EntityPath=<entity-path>
 // wss://<eventhub>.servicebus.windows.net:443/$servicebus/websocket -->
-const hostName = "<eventhub>.servicebus.windows.net";
+const hostName = "127.0.0.1";
 const sharedAccessKeyName = "RootManageSharedAccessKey";
 const sharedAccessKey = "<sharedAccessKey>";
-const wsServer = "wss://" + hostName + ":443/$servicebus/websocket"; // Our websocket server
+const wsServer = "ws://" + hostName + ":5672/"; // Our websocket server
 const eventhubName = "<eventhubName>";
 const eventHubConsumerGroup = "<eventhubConsumerGroup>";
 const connectionSettings = {
