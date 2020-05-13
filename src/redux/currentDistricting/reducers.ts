@@ -31,6 +31,7 @@ export const currentDistrictingReducer = (
         case CurrentDistrictingActionType.UpdateCurrentDistrictingAction:
             // Copy the old district map then update each new entry
             const newMap = new Map(state.districtMap);
+            console.log("currentRedistricting", action);
             action.payload.forEach((value: DistrictID, key: PrecinctID) => {
                 newMap.set(key, value);
             });

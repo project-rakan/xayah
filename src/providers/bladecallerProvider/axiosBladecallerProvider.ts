@@ -36,6 +36,7 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                 `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.districts.json`
             )
             .then((response) => {
+                console.log(response.data.map);
                 replaceCurrentDistricting({
                     districtMap: response.data.map,
                     mapId: 0, // TODO adjust mapId correctly - no required for beta release

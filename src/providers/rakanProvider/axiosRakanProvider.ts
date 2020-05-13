@@ -5,26 +5,28 @@ import { updateCurrentDistricting } from "../../redux/currentDistricting/actionC
 import { MapID } from "../../types";
 
 class AxiosRakanProvider implements RakanProvider {
-    private async requestUpdate(): Promise<void> {
-        return new Promise(() => {
-            setTimeout(() => {
-                if (this.isJobInProgress) {
-                    axios
-                        .get(
-                            // TODO get correct url for beta - include last mapId recieved - this.lastMapId
-                            `http://127.0.0.1:8000/`
-                        )
-                        .then((response) => {
-                            this.lastMapId = response.data.mapId;
-                            updateMapJob({
-                                id: response.data.id,
-                                map: response.data.mapUpdate,
-                            });
-                            updateCurrentDistricting(response.data.map);
+    private requestUpdate(): void {
+        setInterval(() => {
+            if (this.isJobInProgress) {
+                axios
+                    .get(
+                        // TODO get correct url for beta - include last mapId recieved - this.lastMapId
+                        // Also need to specify alpha/beta/gamma/eta values
+                        `http://127.0.0.1:8000/mapjobupdate/?format=json&mapId=${this.lastMapId}`
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                        this.lastMapId = response.data.mapId;
+                        updateMapJob({
+                            id: response.data.id,
+                            map: new Map(response.data.updates),
                         });
-                }
-            }, 1000);
-        });
+                        updateCurrentDistricting(
+                            new Map(response.data.updates)
+                        );
+                    });
+            }
+        }, 10000);
     }
 
     private isJobInProgress = false;
@@ -37,7 +39,7 @@ class AxiosRakanProvider implements RakanProvider {
         axios
             .get(
                 // TODO get correct url for beta
-                `http://127.0.0.1:8000/`
+                `http://127.0.0.1:8000/startjob/?format=json&alpha=${request.alpha}&beta=${request.beta}&gamma=${request.gamma}&eta=${request.eta}`
             )
             .then(() => {
                 addMapJob({
