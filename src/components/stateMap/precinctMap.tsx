@@ -42,6 +42,7 @@ class PrecinctMap extends React.Component<PrecinctMapProps> {
             lng: this.props.lng,
         };
         const size = getSize(origin, this.props.max, this.props.zoom);
+
         return (
             <svg height={size.height} width={size.width}>
                 {this.props.precincts.map(
@@ -52,7 +53,7 @@ class PrecinctMap extends React.Component<PrecinctMapProps> {
                             max={this.props.max}
                             key={index}
                             precinct={precinct}
-                            districtColor="None"
+                            district={this.props.districtMap.get(precinct.id)}
                         />
                     )
                 )}

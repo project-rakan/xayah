@@ -11,11 +11,13 @@ export interface PrecinctPolygonProps {
     origin: Coordinate;
     max: Coordinate;
     precinct: Precinct;
-    districtColor: string;
+    district: number | undefined;
     canvasSize: { height: number; width: number };
 }
 
 class PrecinctPolygon extends React.Component<PrecinctPolygonProps> {
+    static colors = ["Green", "Blue", "Yellow", "Red", "Purple"];
+
     render(): JSX.Element {
         const points: string = this.props.precinct.vertices
             .map((vertex: Coordinate) => {
@@ -35,11 +37,20 @@ class PrecinctPolygon extends React.Component<PrecinctPolygonProps> {
                     return `${prev} ${cur}`;
                 }
             });
+
+        let districtColor;
+        if (this.props.district == undefined) {
+            districtColor = "None";
+        } else {
+            districtColor = PrecinctPolygon.colors[this.props.district];
+        }
+
         return (
             <polygon
                 points={points}
                 stroke="black"
-                fill={this.props.districtColor}
+                fill={districtColor}
+                fillOpacity="0.4"
             />
         );
     }
