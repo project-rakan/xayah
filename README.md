@@ -10,6 +10,8 @@ clone the repo navigate to the root directory and run
 npm install
 ```
 
+For further installation instructions, including how to install the rakan backend refer to https://github.com/project-rakan/one-deployment/wiki
+
 ## How to contribute 
 
 Please observe Github Issues and projects for current project status 
@@ -18,7 +20,7 @@ Please observe our [style and testing guidelines](https://docs.google.com/docume
 
 If you are developing with VSCode I highly reccomend utilizing the [ESlint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-If husky prevents you from commiting, do not override. Contact Colin. 
+If husky prevents you from commiting, do not override. Observe our [reporting guidelines](https://github.com/project-rakan/one-deployment/wiki) and then raise and [issue](https://github.com/project-rakan/xayah/issues). 
 
 ## Available Scripts
 
@@ -37,7 +39,7 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `docker build . -t xayah`
+### `docker build . -t xayah` // DEPRECATED
 
 Builds the app for production in a docker container.<br />
 It leverages `npm run build` and then installs `serve` into the same container.
