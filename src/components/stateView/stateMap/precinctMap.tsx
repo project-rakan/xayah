@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { RootState } from "../../redux/store";
-import { Precinct, PrecinctID, DistrictID, Coordinate } from "../../types";
+import { RootState } from "../../../redux/store";
+import { Precinct, PrecinctID, DistrictID, Coordinate } from "../../../types";
 import { connectedPrecinctPolygon as PrecinctPolygon } from "./precinctPolygon";
-import { getSize } from "../../utils/latLngMath";
+import { getSize } from "../../../utils/latLngMath";
 
 const mapStateToProps = (
     state: RootState

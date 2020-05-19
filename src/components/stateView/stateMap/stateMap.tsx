@@ -1,12 +1,12 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import { connect } from "react-redux";
-import { RootState } from "../../redux/store";
-import { State } from "../../types";
+import { RootState } from "../../../redux/store";
+import { State } from "../../../types";
 import { fitBounds } from "google-map-react/utils";
-import { cachedMapBoundsProvider } from "../../providers/mapBoundsProvider/mapBoundsProvider";
+import { cachedMapBoundsProvider } from "../../../providers/mapBoundsProvider/mapBoundsProvider";
 import { connectedPrecinctMap as PrecinctMap } from "./precinctMap";
-import { setZoom } from "../../redux/currentState/actionCreators";
+import { setZoom } from "../../../redux/currentState/actionCreators";
 
 const mapStateToProps = (state: RootState): { state: State } => ({
     state: state.currentState.stateInfo.state,
