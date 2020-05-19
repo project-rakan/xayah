@@ -1,5 +1,4 @@
 import { UserInput, UserInputAction, UserInputActionType } from "./types";
-import { Page } from "../../types";
 
 const initialState = {
     alpha: 0,
@@ -7,7 +6,6 @@ const initialState = {
     gamma: 0,
     eta: 0,
     mapName: "",
-    page: Page.StateView,
 };
 
 export const userInputReducer = (
@@ -38,11 +36,6 @@ export const userInputReducer = (
         case UserInputActionType.SetMapName: {
             const newState = { ...state };
             newState.mapName = action.payload;
-            return newState;
-        }
-        case UserInputActionType.SetPage: {
-            const newState = { ...state };
-            newState.page = action.payload;
             return newState;
         }
         default:

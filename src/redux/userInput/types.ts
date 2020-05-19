@@ -1,12 +1,9 @@
-import { Page } from "../../types";
-
 export interface UserInput {
     alpha: number;
     beta: number;
     gamma: number;
     eta: number;
     mapName: string;
-    page: Page;
 }
 
 export enum UserInputActionType {
@@ -43,15 +40,9 @@ interface SetMapNameAction {
     payload: string;
 }
 
-interface SetPageAction {
-    type: UserInputActionType.SetPage;
-    payload: Page;
-}
-
 export type UserInputAction =
     | SetAlphaAction
     | SetBetaAction
     | SetGammaAction
     | SetEtaAction
-    | SetMapNameAction
-    | SetPageAction;
+    | SetMapNameAction;
