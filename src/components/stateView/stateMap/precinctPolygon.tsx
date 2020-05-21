@@ -1,7 +1,7 @@
-import { Precinct, Coordinate } from "../../types";
+import { Precinct, Coordinate } from "../../../types";
 import React from "react";
 import { connect } from "react-redux";
-import { coordToNormalCart } from "../../utils/latLngMath";
+import { coordToNormalCart } from "../../../utils/latLngMath";
 
 const mapStateToProps = (): {} => ({});
 

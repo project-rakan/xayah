@@ -8,7 +8,7 @@ import { PrecinctSelectScreen } from "./precinctSelectScreen/precinctSelectScree
 import { Page } from "../types";
 
 const mapStateToProps = (state: RootState): { page: Page } => ({
-    page: state.userInput.page,
+    page: state.page,
 });
 
 const mapDispatchToProps = {};

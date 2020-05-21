@@ -6,12 +6,19 @@ export const mapJobsReducer = (
     action: MapJobsAction
 ): MapJob[] => {
     switch (action.type) {
-        case MapJobsActionType.AddMapJobAction:
-            return [action.payload, ...state];
-        case MapJobsActionType.RemoveMapJobAction:
-            return state.filter((job) => job.id !== action.payload);
-        case MapJobsActionType.UpdateMapJobAction:
+        case MapJobsActionType.AddMapJobAction: {
             const newState = [...state];
+
+            newState.push(action.payload);
+
+            return newState;
+        }
+        case MapJobsActionType.RemoveMapJobAction: {
+            return state.filter((job) => job.id !== action.payload);
+        }
+        case MapJobsActionType.UpdateMapJobAction: {
+            const newState = [...state];
+
             const job = newState.find((job) => job.id === action.payload.id);
 
             if (!job) {
@@ -32,7 +39,9 @@ export const mapJobsReducer = (
             }
 
             return newState;
-        default:
+        }
+        default: {
             return state;
+        }
     }
 };

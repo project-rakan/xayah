@@ -23,17 +23,23 @@ export const currentStateReducer = (
     switch (action.type) {
         case CurrentStateActionType.SetStateInfo: {
             const newState = { ...state };
+
             newState.stateInfo = action.payload;
+
             return newState;
         }
         case CurrentStateActionType.SetStateLoadingStatus: {
             const newState = { ...state };
+
             newState.isLoading = action.payload;
+
             return newState;
         }
         case CurrentStateActionType.SetZoom: {
             const newState = { ...state };
+
             newState.zoom = action.payload;
+
             return newState;
         }
         default:

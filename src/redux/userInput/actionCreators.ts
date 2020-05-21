@@ -1,5 +1,4 @@
 import { UserInputActionType, UserInputAction } from "./types";
-import { Page } from "../../types";
 
 export const setAlpha = (alpha: number): UserInputAction => ({
     type: UserInputActionType.SetAlpha,
@@ -24,9 +23,4 @@ export const setEta = (eta: number): UserInputAction => {
 export const setMapName = (mapName: string): UserInputAction => ({
     type: UserInputActionType.SetMapName,
     payload: mapName,
-});
-
-export const setPage = (page: Page): UserInputAction => ({
-    type: UserInputActionType.SetPage,
-    payload: page,
 });

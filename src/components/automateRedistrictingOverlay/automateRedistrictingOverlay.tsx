@@ -9,11 +9,11 @@ import {
     setBeta,
     setGamma,
     setEta,
-    setPage,
 } from "../../redux/userInput/actionCreators";
 import {} from "@uifabric/react-hooks";
 import { Page, State } from "../../types";
 import { axiosRakanProvider } from "../../providers/rakanProvider/axiosRakanProvider";
+import { setPage } from "../../redux/router/actionCreators";
 
 const mapStateToProps = (
     state: RootState
