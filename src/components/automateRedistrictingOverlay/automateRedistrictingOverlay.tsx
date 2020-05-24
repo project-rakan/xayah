@@ -178,7 +178,7 @@ class AutomateRedistrictingOverlay extends React.Component<
     }
 }
 
-export const connectedAutomateRedistrictingOverlay = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(AutomateRedistrictingOverlay);

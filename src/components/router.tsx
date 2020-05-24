@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { RootState } from "../redux/store";
-import { connectedCustomRedistrictOverlay as CustomRedistrictOverlay } from "./customRedistrictOverlay/customRedistrictOverlay";
-import { connectedAutomateRedistrictingOverlay as AutomateRedistrictingOverlay } from "./automateRedistrictingOverlay/automateRedistrictingOverlay";
-import { connectedStateView as StateView } from "./stateView/stateView";
+import CustomRedistrictOverlay from "./customRedistrictOverlay/customRedistrictOverlay";
+import AutomateRedistrictingOverlay from "./automateRedistrictingOverlay/automateRedistrictingOverlay";
+import StateView from "./stateView/stateView";
 import { PrecinctSelectScreen } from "./precinctSelectScreen/precinctSelectScreen";
 import { Page } from "../types";
 
@@ -34,7 +34,4 @@ class Router extends React.Component<RouterProps> {
     }
 }
 
-export const connectedRouter = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Router);
+export default connect(mapStateToProps, mapDispatchToProps)(Router);

@@ -7,7 +7,7 @@ import {
 } from "office-ui-fabric-react/lib/Dropdown";
 import { State, Page } from "../../types";
 import { connect } from "react-redux";
-import { connectedStateMap as StateMap } from "./stateMap/stateMap";
+import StateMap from "./stateMap/stateMap";
 import { RootState } from "../../redux/store";
 import { setPage } from "../../redux/router/actionCreators";
 
@@ -222,7 +222,4 @@ class StateView extends React.Component<StateViewProps> {
     }
 }
 
-export const connectedStateView = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(StateView);
+export default connect(mapStateToProps, mapDispatchToProps)(StateView);
