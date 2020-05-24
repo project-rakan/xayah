@@ -5,11 +5,13 @@ export const mapScoresReducer = (
     action: MapScoresAction
 ): MapScore[] => {
     switch (action.type) {
-        case MapScoresActionType.AddMapScoreAction:
-            return [action.payload, ...state];
-        case MapScoresActionType.RemoveMapScoreAction:
+        case MapScoresActionType.AddMapScoreAction: {
+            return [...state, action.payload];
+        }
+        case MapScoresActionType.RemoveMapScoreAction: {
             return state.filter((score) => score.id !== action.payload);
-        case MapScoresActionType.UpdateMapScoreAction:
+        }
+        case MapScoresActionType.UpdateMapScoreAction: {
             const newState = [...state];
             const score = newState.find(
                 (score) => score.id === action.payload.id
@@ -23,6 +25,7 @@ export const mapScoresReducer = (
             score.score = action.payload.score;
 
             return newState;
+        }
         default:
             return state;
     }

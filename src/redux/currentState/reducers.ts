@@ -21,24 +21,27 @@ export const currentStateReducer = (
     action: CurrentStateAction
 ): CurrentState => {
     switch (action.type) {
-        case CurrentStateActionType.SetStateInfo:
-            return {
-                isLoading: state.isLoading,
-                stateInfo: action.payload,
-                zoom: state.zoom,
-            };
-        case CurrentStateActionType.SetStateLoadingStatus:
-            return {
-                isLoading: action.payload,
-                stateInfo: state.stateInfo,
-                zoom: state.zoom,
-            };
-        case CurrentStateActionType.SetZoom:
-            return {
-                isLoading: state.isLoading,
-                stateInfo: state.stateInfo,
-                zoom: action.payload,
-            };
+        case CurrentStateActionType.SetStateInfo: {
+            const newState = { ...state };
+
+            newState.stateInfo = action.payload;
+
+            return newState;
+        }
+        case CurrentStateActionType.SetStateLoadingStatus: {
+            const newState = { ...state };
+
+            newState.isLoading = action.payload;
+
+            return newState;
+        }
+        case CurrentStateActionType.SetZoom: {
+            const newState = { ...state };
+
+            newState.zoom = action.payload;
+
+            return newState;
+        }
         default:
             return state;
     }

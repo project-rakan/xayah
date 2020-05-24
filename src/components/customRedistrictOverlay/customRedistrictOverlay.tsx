@@ -9,10 +9,10 @@ import {
     setBeta,
     setGamma,
     setEta,
-    setPage,
 } from "../../redux/userInput/actionCreators";
 import {} from "@uifabric/react-hooks";
 import { Page } from "../../types";
+import { setPage } from "../../redux/router/actionCreators";
 
 const mapStateToProps = (
     state: RootState

@@ -14,6 +14,7 @@ import {
     replaceCurrentDistricting,
 } from "../../redux/currentDistricting/actionCreators";
 import { GUID, State, PrecinctID, DistrictID } from "../../types";
+import { store } from "../../redux/store";
 
 // TODO remove redux dependency and refactor to utils
 
@@ -26,20 +27,22 @@ class MockBladecallerProvider implements BladeCallerProvider {
     }
 
     getDistricting(request: GetDistrictingRequest): void {
-        setCurrentDistrictingLoadingStatus(true);
+        store.dispatch(setCurrentDistrictingLoadingStatus(true));
         switch (request.state) {
             case State.Iowa:
                 // TODO update with current districting mock data
                 const districtMap = new Map<PrecinctID, DistrictID>();
                 districtMap.set(1, 1);
-                replaceCurrentDistricting({
-                    districtMap: districtMap,
-                    mapId: 0,
-                });
-                setCurrentStateLoadingStatus(false);
+                store.dispatch(
+                    replaceCurrentDistricting({
+                        districtMap: districtMap,
+                        mapId: 0,
+                    })
+                );
+                store.dispatch(setCurrentStateLoadingStatus(false));
                 break;
             default:
-                setCurrentStateLoadingStatus(false);
+                store.dispatch(setCurrentStateLoadingStatus(false));
                 throw new Error(
                     "Mock Bladecaller Provider only returns Iowa data"
                 );
@@ -47,16 +50,18 @@ class MockBladecallerProvider implements BladeCallerProvider {
     }
 
     getStateInfo(request: GetStateInfoRequest): void {
-        setCurrentStateLoadingStatus(true);
+        store.dispatch(setCurrentStateLoadingStatus(true));
         switch (request.state) {
             case State.Iowa:
-                setStateInfo(
-                    MockBladecallerProvider.currentRedistrictingResponse
+                store.dispatch(
+                    setStateInfo(
+                        MockBladecallerProvider.currentRedistrictingResponse
+                    )
                 );
-                setCurrentStateLoadingStatus(false);
+                store.dispatch(setCurrentStateLoadingStatus(false));
                 break;
             default:
-                setCurrentStateLoadingStatus(false);
+                store.dispatch(setCurrentStateLoadingStatus(false));
                 throw new Error(
                     "Mock Bladecaller Provider only returns Iowa data"
                 );

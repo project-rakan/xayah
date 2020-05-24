@@ -16,29 +16,34 @@ export const currentDistrictingReducer = (
     action: CurrentDistrictingAction
 ): CurrentDistricting => {
     switch (action.type) {
-        case CurrentDistrictingActionType.ReplaceCurrentDistrictingAction:
-            return {
-                isLoading: state.isLoading,
-                mapID: action.payload.mapId,
-                districtMap: new Map(action.payload.districtMap),
-            };
-        case CurrentDistrictingActionType.SetDistrictingLoadingStatus:
-            return {
-                isLoading: action.payload,
-                mapID: state.mapID,
-                districtMap: state.districtMap,
-            };
-        case CurrentDistrictingActionType.UpdateCurrentDistrictingAction:
+        case CurrentDistrictingActionType.ReplaceCurrentDistrictingAction: {
+            const newState = { ...state };
+
+            newState.mapID = action.payload.mapId;
+            newState.districtMap = new Map(action.payload.districtMap);
+
+            return newState;
+        }
+        case CurrentDistrictingActionType.SetDistrictingLoadingStatus: {
+            const newState = { ...state };
+
+            newState.isLoading = action.payload;
+
+            return newState;
+        }
+        case CurrentDistrictingActionType.UpdateCurrentDistrictingAction: {
+            const newState = { ...state };
+
             // Copy the old district map then update each new entry
             const newMap = new Map(state.districtMap);
+            console.log("currentRedistricting", action);
             action.payload.forEach((value: DistrictID, key: PrecinctID) => {
                 newMap.set(key, value);
             });
-            return {
-                isLoading: state.isLoading,
-                districtMap: newMap,
-                mapID: state.mapID,
-            };
+            newState.districtMap = newMap;
+
+            return newState;
+        }
         default:
             return state;
     }

@@ -2,3 +2,7 @@
 scripts/
 config/
 src/react-app-env.d.ts
+src/ssr/index.js
+src/ssr/server.js
+src/ssr/loader.js
+rhea/

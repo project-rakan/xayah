@@ -1,24 +1,22 @@
-import { MapScore, MapScoresActionType, MapScoreUpdate } from "./types";
-import { store } from "../store";
+import {
+    MapScore,
+    MapScoresActionType,
+    MapScoreUpdate,
+    MapScoresAction,
+} from "./types";
 import { GUID } from "../../types";
 
-export const addMapScore = (job: MapScore): void => {
-    store.dispatch({
-        type: MapScoresActionType.AddMapScoreAction,
-        payload: job,
-    });
-};
+export const addMapScore = (job: MapScore): MapScoresAction => ({
+    type: MapScoresActionType.AddMapScoreAction,
+    payload: job,
+});
 
-export const removeMapScore = (jobID: GUID): void => {
-    store.dispatch({
-        type: MapScoresActionType.RemoveMapScoreAction,
-        payload: jobID,
-    });
-};
+export const removeMapScore = (jobID: GUID): MapScoresAction => ({
+    type: MapScoresActionType.RemoveMapScoreAction,
+    payload: jobID,
+});
 
-export const updateMapScore = (update: MapScoreUpdate): void => {
-    store.dispatch({
-        type: MapScoresActionType.UpdateMapScoreAction,
-        payload: update,
-    });
-};
+export const updateMapScore = (update: MapScoreUpdate): MapScoresAction => ({
+    type: MapScoresActionType.UpdateMapScoreAction,
+    payload: update,
+});

@@ -7,8 +7,9 @@ import {
 } from "office-ui-fabric-react/lib/Dropdown";
 import { State, Page } from "../../types";
 import { connect } from "react-redux";
-import { setPage } from "../../redux/userInput/actionCreators";
-import { connectedStateMap as StateMap } from "../stateMap/stateMap";
+import { connectedStateMap as StateMap } from "./stateMap/stateMap";
+import { RootState } from "../../redux/store";
+import { setPage } from "../../redux/router/actionCreators";
 
 const dropdownStyles: Partial<IDropdownStyles> = {
     dropdown: { width: 140 },
@@ -19,13 +20,24 @@ const options: IDropdownOption[] = Object.values(State).map((state) => ({
     text: state,
 }));
 
-const mapStateToProps = (): {} => ({});
+const mapStateToProps = (
+    state: RootState
+): { alpha: number; beta: number; gamma: number; eta: number } => ({
+    alpha: state.userInput.alpha,
+    beta: state.userInput.beta,
+    gamma: state.userInput.gamma,
+    eta: state.userInput.eta,
+});
 
 const mapDispatchToProps = {
     setPage: setPage,
 };
 
 interface StateViewProps {
+    alpha: number;
+    beta: number;
+    gamma: number;
+    eta: number;
     setPage: (page: Page) => void;
 }
 
@@ -58,6 +70,7 @@ class StateView extends React.Component<StateViewProps> {
                         options={options}
                         styles={dropdownStyles}
                         defaultSelectedKey="IA"
+                        // TODO add onChange to change displayed state
                     />
                 </div>
                 <div
@@ -184,11 +197,10 @@ class StateView extends React.Component<StateViewProps> {
                     className="alphaValueBetaValuegammaValueEtaValue"
                     style={{ backgroundColor: "white" }}
                 >
-                    Alpha Value: 0 <br />
-                    Beta Value: 0
-                    <br />
-                    Gamma Value: 0 <br />
-                    Eta Value: 0{" "}
+                    Alpha Value: {this.props.alpha} <br />
+                    Beta Value: {this.props.beta} <br />
+                    Gamma Value: {this.props.gamma} <br />
+                    Eta Value: {this.props.eta}{" "}
                 </div>
                 <div
                     data-layer="6dc7781a-37d2-4ff6-a429-0fa4d1139511"

@@ -14,8 +14,10 @@ import {
     replaceCurrentDistricting,
 } from "../../redux/currentDistricting/actionCreators";
 import axios from "axios";
+import { store } from "../../redux/store";
 
 class AxiosBladecallerProvider implements BladeCallerProvider {
+    // TODO remove redux dependency and refactor to utils
     createGuid = async (request: CreateGuidRequest): Promise<GUID> => {
         return axios
             .get(
@@ -28,7 +30,7 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
             });
     };
     getDistricting = (request: GetDistrictingRequest): void => {
-        setCurrentDistrictingLoadingStatus(true);
+        store.dispatch(setCurrentDistrictingLoadingStatus(true));
         const statename = StateName[request.state];
         axios
             .get(
@@ -36,18 +38,21 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                 `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.districts.json`
             )
             .then((response) => {
-                replaceCurrentDistricting({
-                    districtMap: response.data.map,
-                    mapId: 0, // TODO adjust mapId correctly - no required for beta release
-                });
+                console.log(response.data.map);
+                store.dispatch(
+                    replaceCurrentDistricting({
+                        districtMap: response.data.map,
+                        mapId: 0, // TODO adjust mapId correctly - no required for beta release
+                    })
+                );
             })
             .catch((error) => {
                 console.error(error);
             });
-        setCurrentStateLoadingStatus(false);
+        store.dispatch(setCurrentStateLoadingStatus(false));
     };
     getStateInfo = (request: GetStateInfoRequest): void => {
-        setCurrentStateLoadingStatus(true);
+        store.dispatch(setCurrentStateLoadingStatus(true));
         const statename = StateName[request.state];
         axios
             .get(
@@ -55,12 +60,12 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
                 `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.json`
             )
             .then((response) => {
-                setStateInfo(response.data);
+                store.dispatch(setStateInfo(response.data));
             })
             .catch((error) => {
                 console.error(error);
             });
-        setCurrentStateLoadingStatus(false);
+        store.dispatch(setCurrentStateLoadingStatus(false));
     };
 }
 export const axiosBladecallerProvider = new AxiosBladecallerProvider();

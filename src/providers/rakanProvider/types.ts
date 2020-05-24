@@ -13,6 +13,8 @@ export interface MapJobUpdate {
     id: GUID;
     mapId: MapID;
     updates: Map<PrecinctID, DistrictID>;
+    score: number;
+    probability: number;
 }
 
 export interface ScoreMapRequest {
