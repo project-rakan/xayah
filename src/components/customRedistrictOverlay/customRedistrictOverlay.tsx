@@ -166,7 +166,7 @@ export class CustomRedistrictOverlay extends React.Component<
     }
 }
 
-export const connectedCustomRedistrictOverlay = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(CustomRedistrictOverlay);

@@ -5,7 +5,7 @@ import { RootState } from "../../../redux/store";
 import { State } from "../../../types";
 import { fitBounds } from "google-map-react/utils";
 import { cachedMapBoundsProvider } from "../../../providers/mapBoundsProvider/mapBoundsProvider";
-import { connectedPrecinctMap as PrecinctMap } from "./precinctMap";
+import PrecinctMap from "./precinctMap";
 import { setZoom } from "../../../redux/currentState/actionCreators";
 
 const mapStateToProps = (state: RootState): { state: State } => ({
@@ -68,7 +68,4 @@ class StateMap extends React.Component<StateMapProps> {
     }
 }
 
-export const connectedStateMap = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(StateMap);
+export default connect(mapStateToProps, mapDispatchToProps)(StateMap);

@@ -56,7 +56,4 @@ class PrecinctPolygon extends React.Component<PrecinctPolygonProps> {
     }
 }
 
-export const connectedPrecinctPolygon = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PrecinctPolygon);
+export default connect(mapStateToProps, mapDispatchToProps)(PrecinctPolygon);

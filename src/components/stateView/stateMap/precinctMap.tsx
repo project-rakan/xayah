@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { Precinct, PrecinctID, DistrictID, Coordinate } from "../../../types";
-import { connectedPrecinctPolygon as PrecinctPolygon } from "./precinctPolygon";
+import PrecinctPolygon from "./precinctPolygon";
 import { getSize } from "../../../utils/latLngMath";
 
 const mapStateToProps = (
@@ -62,7 +62,4 @@ class PrecinctMap extends React.Component<PrecinctMapProps> {
     }
 }
 
-export const connectedPrecinctMap = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PrecinctMap);
+export default connect(mapStateToProps, mapDispatchToProps)(PrecinctMap);
