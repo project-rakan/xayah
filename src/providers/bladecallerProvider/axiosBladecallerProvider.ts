@@ -4,7 +4,7 @@ import {
     GetDistrictingRequest,
     GetStateInfoRequest,
 } from "./types";
-import { GUID, StateName } from "../../types";
+import { GUID } from "../../types";
 import {
     setStateInfo,
     setCurrentStateLoadingStatus,
@@ -13,17 +13,14 @@ import {
     setCurrentDistrictingLoadingStatus,
     replaceCurrentDistricting,
 } from "../../redux/currentDistricting/actionCreators";
-import axios from "axios";
+import axios from "../axios";
 import { store } from "../../redux/store";
 
 class AxiosBladecallerProvider implements BladeCallerProvider {
     // TODO remove redux dependency and refactor to utils
     createGuid = async (request: CreateGuidRequest): Promise<GUID> => {
         return axios
-            .get(
-                // use localhost for beta release
-                `http://127.0.0.1:8000/guid/?state=${request.state}&jobType=${request.jobType}&format=json`
-            )
+            .post("create-guid/", request)
             .then((response) => response.data)
             .catch((error) => {
                 console.error(error);
@@ -31,18 +28,14 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
     };
     getDistricting = (request: GetDistrictingRequest): void => {
         store.dispatch(setCurrentDistrictingLoadingStatus(true));
-        const statename = StateName[request.state];
         axios
-            .get(
-                // use localhost for beta release
-                `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.districts.json`
-            )
-            .then((response) => {
-                console.log(response.data.map);
+            .post("get-districting/", request)
+            .then((response) => response.data)
+            .then((data) => {
                 store.dispatch(
                     replaceCurrentDistricting({
-                        districtMap: response.data.map,
-                        mapId: 0, // TODO adjust mapId correctly - no required for beta release
+                        districtMap: data.map,
+                        mapId: data.id, // TODO adjust mapId correctly - no required for beta release
                     })
                 );
             })
@@ -53,12 +46,8 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
     };
     getStateInfo = (request: GetStateInfoRequest): void => {
         store.dispatch(setCurrentStateLoadingStatus(true));
-        const statename = StateName[request.state];
         axios
-            .get(
-                // use localhost for beta release
-                `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.json`
-            )
+            .get(`stateinfo/${request.state}.json`)
             .then((response) => {
                 store.dispatch(setStateInfo(response.data));
             })
