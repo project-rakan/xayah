@@ -4,6 +4,7 @@ import { mockRakanProvider } from "./mockRakanProvider";
 
 test("Runs Mock Iowa Jobs", () => {
     mockRakanProvider.startMapJob({
+        name: "test",
         state: State.Iowa,
         id: "IAStartMap123",
         alpha: 11,

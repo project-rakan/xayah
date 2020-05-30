@@ -1,6 +1,7 @@
 import { State, PrecinctID, DistrictID, MapID, GUID } from "../../types";
 
 export interface StartMapJobRequest {
+    name: string;
     state: State;
     id: GUID;
     alpha: number;

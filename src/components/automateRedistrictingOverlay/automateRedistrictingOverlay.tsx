@@ -76,6 +76,7 @@ class AutomateRedistrictingOverlay extends React.Component<
                     onClick={(): void => {
                         this.props.setPage(Page.StateView);
                         axiosRakanProvider.startMapJob({
+                            name: this.props.mapName,
                             alpha: this.props.alpha,
                             beta: this.props.beta,
                             gamma: this.props.gamma,

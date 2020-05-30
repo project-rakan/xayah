@@ -14,6 +14,7 @@ class MockRakanProvider implements RakanProvider {
                 // Create new map job
                 store.dispatch(
                     addMapJob({
+                        name: request.name,
                         id: request.id,
                         state: request.state,
                         alpha: request.alpha,

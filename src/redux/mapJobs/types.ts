@@ -27,6 +27,7 @@ export type MapJobsAction =
     | UpdateMapJobAction;
 
 export interface MapJob {
+    name: string;
     state: State;
     id: GUID;
     alpha: number;

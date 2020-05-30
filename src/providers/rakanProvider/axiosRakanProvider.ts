@@ -50,6 +50,7 @@ class AxiosRakanProvider implements RakanProvider {
             .then(() => {
                 store.dispatch(
                     addMapJob({
+                        name: request.name,
                         id: request.id,
                         state: request.state,
                         alpha: request.alpha,
