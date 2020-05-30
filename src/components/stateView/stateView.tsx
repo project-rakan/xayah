@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import StateMap from "./stateMap/stateMap";
 import { RootState } from "../../redux/store";
 import { setPage } from "../../redux/router/actionCreators";
+import { axiosBladecallerProvider } from "../../providers/bladecallerProvider/axiosBladecallerProvider";
 
 const dropdownStyles: Partial<IDropdownStyles> = {
     dropdown: { width: 140 },
@@ -22,7 +23,16 @@ const options: IDropdownOption[] = Object.values(State).map((state) => ({
 
 const mapStateToProps = (
     state: RootState
-): { alpha: number; beta: number; gamma: number; eta: number } => ({
+): {
+    alpha: number;
+    beta: number;
+    gamma: number;
+    eta: number;
+    currentState: State;
+    isLoading: boolean;
+} => ({
+    isLoading: state.currentMap.isLoading,
+    currentState: state.currentMap.stateInfo.state,
     alpha: state.userInput.alpha,
     beta: state.userInput.beta,
     gamma: state.userInput.gamma,
@@ -34,15 +44,21 @@ const mapDispatchToProps = {
 };
 
 interface StateViewProps {
+    isLoading: boolean;
     alpha: number;
     beta: number;
     gamma: number;
     eta: number;
+    currentState: State;
     setPage: (page: Page) => void;
 }
 
 class StateView extends React.Component<StateViewProps> {
     render(): JSX.Element {
+        if (this.props.isLoading) {
+            return <h1>Loading</h1>;
+        }
+
         return (
             <div
                 data-layer="660aad63-cd24-4373-aefa-1709afafc662"
@@ -69,7 +85,17 @@ class StateView extends React.Component<StateViewProps> {
                         label="Go To:"
                         options={options}
                         styles={dropdownStyles}
-                        defaultSelectedKey="IA"
+                        selectedKey={this.props.currentState}
+                        onChange={(
+                            event: React.FormEvent<HTMLDivElement>,
+                            item?: IDropdownOption
+                        ): void => {
+                            if (item) {
+                                axiosBladecallerProvider.getStateInfo({
+                                    state: item.key as State,
+                                });
+                            }
+                        }}
                         // TODO add onChange to change displayed state
                     />
                 </div>

@@ -18,6 +18,7 @@ import { store } from "../../redux/store";
 
 class AxiosBladecallerProvider implements BladeCallerProvider {
     // TODO remove redux dependency and refactor to utils
+    // TODO refactor state modification logic
     createGuid = async (request: CreateGuidRequest): Promise<GUID> => {
         return axios
             .get(
@@ -48,8 +49,8 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
             })
             .catch((error) => {
                 console.error(error);
-            });
-        store.dispatch(setCurrentMapLoadingStatus(false));
+            })
+            .finally(() => store.dispatch(setCurrentMapLoadingStatus(false)));
     };
     getStateInfo = (request: GetStateInfoRequest): void => {
         store.dispatch(setCurrentMapLoadingStatus(true));
@@ -64,8 +65,8 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
             })
             .catch((error) => {
                 console.error(error);
-            });
-        store.dispatch(setCurrentMapLoadingStatus(false));
+            })
+            .finally(() => store.dispatch(setCurrentMapLoadingStatus(false)));
     };
 }
 export const axiosBladecallerProvider = new AxiosBladecallerProvider();

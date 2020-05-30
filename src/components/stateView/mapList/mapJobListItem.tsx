@@ -4,12 +4,18 @@ import { connect } from "react-redux";
 import { Label } from "office-ui-fabric-react/lib/Label";
 import { MapJob } from "../../../redux/mapJobs/types";
 import { removeMapJob } from "../../../redux/mapJobs/actionCreators";
-import { GUID } from "../../../types";
+import { GUID, PrecinctID, DistrictID, MapID, State } from "../../../types";
+import { replaceCurrentDistricting } from "../../../redux/currentDistricting/actionCreators";
+import { RootState } from "../../../redux/store";
+import { axiosBladecallerProvider } from "../../../providers/bladecallerProvider/axiosBladecallerProvider";
 
-const mapStateToProps = (): {} => ({});
+const mapStateToProps = (state: RootState): { currentState: State } => ({
+    currentState: state.currentMap.stateInfo.state,
+});
 
 const mapDispatchToProps = {
     removeMapJob: removeMapJob,
+    replaceCurrentDistricting: replaceCurrentDistricting,
 };
 
 const customSpacingStackTokens: IStackTokens = {
@@ -19,15 +25,31 @@ const customSpacingStackTokens: IStackTokens = {
 
 interface MapJobListItemProps {
     job: MapJob;
+    currentState: State;
     removeMapJob: (jobID: GUID) => void;
+    replaceCurrentDistricting: (newMap: {
+        districtMap: Map<PrecinctID, DistrictID>;
+        mapId: MapID;
+    }) => void;
 }
 
 class MapJobListItem extends React.Component<MapJobListItemProps> {
     render(): JSX.Element {
         return (
             <Stack horizontal tokens={customSpacingStackTokens}>
-                {/* TODO add on click */}
-                <Label>
+                <Label
+                    onClick={(): void => {
+                        this.props.replaceCurrentDistricting({
+                            districtMap: this.props.job.map,
+                            mapId: this.props.job.mapId,
+                        });
+                        if (this.props.job.state !== this.props.currentState) {
+                            axiosBladecallerProvider.getStateInfo({
+                                state: this.props.job.state,
+                            });
+                        }
+                    }}
+                >
                     {`${this.props.job.name}, ${this.props.job.state}`}
                 </Label>
                 <DefaultButton
