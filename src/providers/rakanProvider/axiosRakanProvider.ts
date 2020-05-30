@@ -52,6 +52,7 @@ class AxiosRakanProvider implements RakanProvider {
                     addMapJob({
                         name: request.name,
                         id: request.id,
+                        mapId: 0,
                         state: request.state,
                         alpha: request.alpha,
                         beta: request.beta,

@@ -34,7 +34,7 @@ export interface MapJob {
     beta: number;
     gamma: number;
     eta: number;
-    mapId?: MapID;
+    mapId: MapID;
     map: Map<PrecinctID, DistrictID>;
 }
 
