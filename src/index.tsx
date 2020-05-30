@@ -7,6 +7,7 @@ import { store } from "./redux/store";
 import Router from "./components/router";
 import { axiosBladecallerProvider } from "./providers/bladecallerProvider/axiosBladecallerProvider";
 import { State } from "./types";
+import { addMapJob } from "./redux/mapJobs/actionCreators";
 
 // Beta Release - Ought to Draw precincts on map on page load, with appropriate colorings
 axiosBladecallerProvider.getStateInfo({
@@ -22,6 +23,21 @@ ReactDOM.render(
         <Router />
     </Provider>,
     document.getElementById("root")
+);
+
+// Create a new map job containing current Iowa districts
+store.dispatch(
+    addMapJob({
+        name: "Current Districting",
+        state: State.Iowa,
+        id: "0",
+        mapId: 0,
+        alpha: 0,
+        beta: 0,
+        gamma: 0,
+        eta: 0,
+        map: new Map(),
+    })
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -7,6 +7,7 @@ import { store } from "../../redux/store";
 
 class AxiosRakanProvider implements RakanProvider {
     // TODO remove redux dependency and refactor to utils
+    // TODO refactor state modification logic
     private requestUpdate(): void {
         setInterval(() => {
             if (this.isJobInProgress) {
