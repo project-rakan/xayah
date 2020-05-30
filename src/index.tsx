@@ -7,15 +7,16 @@ import { store } from "./redux/store";
 import Router from "./components/router";
 import { axiosBladecallerProvider } from "./providers/bladecallerProvider/axiosBladecallerProvider";
 import { State } from "./types";
+import { initializeIcons } from "office-ui-fabric-react/lib/Icons";
 
-// Beta Release - Ought to Draw precincts on map on page load, with appropriate colorings
+initializeIcons();
+
+// Final Release - Ought to Draw precincts on map on page load
 axiosBladecallerProvider.getStateInfo({
     state: State.Iowa,
 });
-axiosBladecallerProvider.getDistricting({
-    state: State.Iowa,
-    mapId: 0,
-});
+
+// TODO create current Iowa district map job.
 
 ReactDOM.render(
     <Provider store={store}>
@@ -24,7 +25,4 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

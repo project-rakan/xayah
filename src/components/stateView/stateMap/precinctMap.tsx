@@ -36,7 +36,6 @@ class PrecinctMap extends React.Component<PrecinctMapProps> {
     // }
 
     render(): JSX.Element {
-        console.log("precinctMap zoom " + this.props.zoom);
         const origin = {
             lat: this.props.lat,
             lng: this.props.lng,
