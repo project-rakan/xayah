@@ -7,8 +7,8 @@ import {
 import { GUID, StateName } from "../../types";
 import {
     setStateInfo,
-    setCurrentStateLoadingStatus,
-} from "../../redux/currentState/actionCreators";
+    setCurrentMapLoadingStatus,
+} from "../../redux/currentMap/actionCreators";
 import {
     setCurrentDistrictingLoadingStatus,
     replaceCurrentDistricting,
@@ -49,10 +49,10 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
             .catch((error) => {
                 console.error(error);
             });
-        store.dispatch(setCurrentStateLoadingStatus(false));
+        store.dispatch(setCurrentMapLoadingStatus(false));
     };
     getStateInfo = (request: GetStateInfoRequest): void => {
-        store.dispatch(setCurrentStateLoadingStatus(true));
+        store.dispatch(setCurrentMapLoadingStatus(true));
         const statename = StateName[request.state];
         axios
             .get(
@@ -65,7 +65,7 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
             .catch((error) => {
                 console.error(error);
             });
-        store.dispatch(setCurrentStateLoadingStatus(false));
+        store.dispatch(setCurrentMapLoadingStatus(false));
     };
 }
 export const axiosBladecallerProvider = new AxiosBladecallerProvider();

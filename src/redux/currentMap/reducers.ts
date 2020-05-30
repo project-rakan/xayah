@@ -1,11 +1,7 @@
-import {
-    CurrentStateAction,
-    CurrentStateActionType,
-    CurrentState,
-} from "./types";
+import { CurrentMapAction, CurrentMapActionType, CurrentMap } from "./types";
 import { State } from "../../types";
 
-const initialState: CurrentState = {
+const initialState: CurrentMap = {
     isLoading: false,
     stateInfo: {
         state: State.Iowa,
@@ -16,26 +12,26 @@ const initialState: CurrentState = {
     zoom: 0,
 };
 
-export const currentStateReducer = (
-    state: CurrentState = initialState,
-    action: CurrentStateAction
-): CurrentState => {
+export const currentMapReducer = (
+    state: CurrentMap = initialState,
+    action: CurrentMapAction
+): CurrentMap => {
     switch (action.type) {
-        case CurrentStateActionType.SetStateInfo: {
+        case CurrentMapActionType.SetStateInfo: {
             const newState = { ...state };
 
             newState.stateInfo = action.payload;
 
             return newState;
         }
-        case CurrentStateActionType.SetStateLoadingStatus: {
+        case CurrentMapActionType.SetMapLoadingStatus: {
             const newState = { ...state };
 
             newState.isLoading = action.payload;
 
             return newState;
         }
-        case CurrentStateActionType.SetZoom: {
+        case CurrentMapActionType.SetZoom: {
             const newState = { ...state };
 
             newState.zoom = action.payload;

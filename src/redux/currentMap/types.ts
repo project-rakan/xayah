@@ -1,29 +1,29 @@
 import { State, Precinct } from "../../types";
 
-export enum CurrentStateActionType {
+export enum CurrentMapActionType {
     SetStateInfo = "SetStateInfo",
-    SetStateLoadingStatus = "SetStateLoadingStatus",
+    SetMapLoadingStatus = "SetMapLoadingStatus",
     SetZoom = "SetZoom",
 }
 
 interface SetZoomAction {
-    type: CurrentStateActionType.SetZoom;
+    type: CurrentMapActionType.SetZoom;
     payload: number;
 }
 
 interface SetStateInfo {
-    type: CurrentStateActionType.SetStateInfo;
+    type: CurrentMapActionType.SetStateInfo;
     payload: StateInfo;
 }
 
-interface SetStateLoadingStatus {
-    type: CurrentStateActionType.SetStateLoadingStatus;
+interface SetMapLoadingStatus {
+    type: CurrentMapActionType.SetMapLoadingStatus;
     payload: boolean;
 }
 
-export type CurrentStateAction =
+export type CurrentMapAction =
     | SetStateInfo
-    | SetStateLoadingStatus
+    | SetMapLoadingStatus
     | SetZoomAction;
 
 export interface StateInfo {
@@ -33,7 +33,7 @@ export interface StateInfo {
     precincts: Precinct[];
 }
 
-export interface CurrentState {
+export interface CurrentMap {
     isLoading: boolean;
     stateInfo: StateInfo;
     zoom: number;

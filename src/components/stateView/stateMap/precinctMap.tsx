@@ -12,9 +12,9 @@ const mapStateToProps = (
     districtMap: Map<PrecinctID, DistrictID>;
     zoom: number;
 } => ({
-    precincts: state.currentState.stateInfo.precincts,
+    precincts: state.currentMap.stateInfo.precincts,
     districtMap: state.currentDistricting.districtMap,
-    zoom: state.currentState.zoom,
+    zoom: state.currentMap.zoom,
 });
 
 const mapDispatchToProps = {};
