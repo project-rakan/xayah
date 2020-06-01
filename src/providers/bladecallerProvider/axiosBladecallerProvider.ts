@@ -22,7 +22,7 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
     createGuid = async (request: CreateGuidRequest): Promise<GUID> => {
         return axios
             .post("create-guid/", request)
-            .then((response) => response.data)
+            .then((response) => response.data.guid)
             .catch((error) => {
                 console.error(error);
             });

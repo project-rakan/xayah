@@ -16,7 +16,6 @@ export const setGamma = (gamma: number): UserInputAction => ({
 });
 
 export const setEta = (eta: number): UserInputAction => {
-    console.log("action eta " + eta);
     return { type: UserInputActionType.SetEta, payload: eta };
 };
 

@@ -10,6 +10,8 @@ export interface StartMapJobRequest {
     eta: number;
 }
 
+// TODO rename this shares name with redux slice var
+
 export interface MapJobUpdate {
     id: GUID;
     mapId: MapID;

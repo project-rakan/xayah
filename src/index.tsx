@@ -7,8 +7,8 @@ import { store } from "./redux/store";
 import Router from "./components/router";
 import { axiosBladecallerProvider } from "./providers/bladecallerProvider/axiosBladecallerProvider";
 import { State } from "./types";
-import { addMapJob } from "./redux/mapJobs/actionCreators";
 import { initializeIcons } from "office-ui-fabric-react/lib/Icons";
+import { addMapJob } from "./redux/mapJobs/actionCreators";
 
 initializeIcons();
 
@@ -23,9 +23,9 @@ axiosBladecallerProvider.getStateInfo({
 store.dispatch(
     addMapJob({
         name: "Current Districting",
-        state: State.Iowa,
-        id: "0",
         mapId: 0,
+        id: State.Iowa,
+        state: State.Iowa,
         alpha: 0,
         beta: 0,
         gamma: 0,
