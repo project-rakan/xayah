@@ -9,8 +9,11 @@ import { replaceCurrentDistricting } from "../../../redux/currentDistricting/act
 import { RootState } from "../../../redux/store";
 import { axiosBladecallerProvider } from "../../../providers/bladecallerProvider/axiosBladecallerProvider";
 
-const mapStateToProps = (state: RootState): { currentState: State } => ({
+const mapStateToProps = (
+    state: RootState
+): { currentState: State; currentMapId: number } => ({
     currentState: state.currentMap.stateInfo.state,
+    currentMapId: state.currentDistricting.mapID,
 });
 
 const mapDispatchToProps = {
@@ -26,6 +29,7 @@ const customSpacingStackTokens: IStackTokens = {
 interface MapJobListItemProps {
     job: MapJob;
     currentState: State;
+    currentMapId: number;
     removeMapJob: (jobID: GUID) => void;
     replaceCurrentDistricting: (newMap: {
         districtMap: Map<PrecinctID, DistrictID>;
@@ -50,7 +54,11 @@ class MapJobListItem extends React.Component<MapJobListItemProps> {
                         }
                     }}
                 >
-                    {`${this.props.job.name}, ${this.props.job.state}`}
+                    {`${
+                        this.props.currentMapId == this.props.job.mapId
+                            ? ">"
+                            : " "
+                    } ${this.props.job.name}, ${this.props.job.state}`}
                 </Label>
                 <DefaultButton
                     text="Remove"
