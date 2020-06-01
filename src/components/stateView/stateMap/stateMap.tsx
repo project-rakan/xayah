@@ -6,10 +6,10 @@ import { State } from "../../../types";
 import { fitBounds } from "google-map-react/utils";
 import { cachedMapBoundsProvider } from "../../../providers/mapBoundsProvider/mapBoundsProvider";
 import PrecinctMap from "./precinctMap";
-import { setZoom } from "../../../redux/currentState/actionCreators";
+import { setZoom } from "../../../redux/currentMap/actionCreators";
 
 const mapStateToProps = (state: RootState): { state: State } => ({
-    state: state.currentState.stateInfo.state,
+    state: state.currentMap.stateInfo.state,
 });
 
 const mapDispatchToProps = {

@@ -1,6 +1,7 @@
 import { State, PrecinctID, DistrictID, MapID, GUID } from "../../types";
 
 export interface StartMapJobRequest {
+    name: string;
     state: State;
     id: GUID;
     alpha: number;
@@ -8,6 +9,8 @@ export interface StartMapJobRequest {
     gamma: number;
     eta: number;
 }
+
+// TODO rename this shares name with redux slice var
 
 export interface MapJobUpdate {
     id: GUID;

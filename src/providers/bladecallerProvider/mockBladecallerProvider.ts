@@ -6,9 +6,9 @@ import {
     GetStateInfoRequest,
 } from "./types";
 import {
-    setCurrentStateLoadingStatus,
+    setCurrentMapLoadingStatus,
     setStateInfo,
-} from "../../redux/currentState/actionCreators";
+} from "../../redux/currentMap/actionCreators";
 import {
     setCurrentDistrictingLoadingStatus,
     replaceCurrentDistricting,
@@ -39,10 +39,10 @@ class MockBladecallerProvider implements BladeCallerProvider {
                         mapId: 0,
                     })
                 );
-                store.dispatch(setCurrentStateLoadingStatus(false));
+                store.dispatch(setCurrentMapLoadingStatus(false));
                 break;
             default:
-                store.dispatch(setCurrentStateLoadingStatus(false));
+                store.dispatch(setCurrentMapLoadingStatus(false));
                 throw new Error(
                     "Mock Bladecaller Provider only returns Iowa data"
                 );
@@ -50,7 +50,7 @@ class MockBladecallerProvider implements BladeCallerProvider {
     }
 
     getStateInfo(request: GetStateInfoRequest): void {
-        store.dispatch(setCurrentStateLoadingStatus(true));
+        store.dispatch(setCurrentMapLoadingStatus(true));
         switch (request.state) {
             case State.Iowa:
                 store.dispatch(
@@ -58,10 +58,10 @@ class MockBladecallerProvider implements BladeCallerProvider {
                         MockBladecallerProvider.currentRedistrictingResponse
                     )
                 );
-                store.dispatch(setCurrentStateLoadingStatus(false));
+                store.dispatch(setCurrentMapLoadingStatus(false));
                 break;
             default:
-                store.dispatch(setCurrentStateLoadingStatus(false));
+                store.dispatch(setCurrentMapLoadingStatus(false));
                 throw new Error(
                     "Mock Bladecaller Provider only returns Iowa data"
                 );

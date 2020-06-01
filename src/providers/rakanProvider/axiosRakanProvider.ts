@@ -1,55 +1,63 @@
-import { RakanProvider, StartMapJobRequest, ScoreMapRequest } from "./types";
+import {
+    RakanProvider,
+    StartMapJobRequest,
+    ScoreMapRequest,
+    MapJobUpdate,
+} from "./types";
 import { addMapJob, updateMapJob } from "../../redux/mapJobs/actionCreators";
-import axios from "axios";
-import { updateCurrentDistricting } from "../../redux/currentDistricting/actionCreators";
-import { MapID } from "../../types";
+import axios from "../axios";
 import { store } from "../../redux/store";
+import { updateCurrentDistricting } from "../../redux/currentDistricting/actionCreators";
 
 class AxiosRakanProvider implements RakanProvider {
     // TODO remove redux dependency and refactor to utils
+    // TODO refactor state modification logic
     private requestUpdate(): void {
         setInterval(() => {
-            if (this.isJobInProgress) {
+            store.getState().mapJobs.forEach((job) => {
+                const jobUpdateRequest = { id: job.id, state: job.state };
                 axios
-                    .get(
-                        // TODO get correct url for beta - include last mapId recieved - this.lastMapId
-                        // Also need to specify alpha/beta/gamma/eta values
-                        `http://127.0.0.1:8000/mapjobupdate/?format=json&mapId=${this.lastMapId}`
-                    )
-                    .then((response) => {
-                        console.log(response.data);
-                        this.lastMapId = response.data.mapId;
+                    .post("get-job-update/", jobUpdateRequest)
+                    .then((response) => response.data)
+                    .then((data: MapJobUpdate) => {
                         store.dispatch(
                             updateMapJob({
-                                id: response.data.id,
-                                map: new Map(response.data.updates),
+                                id: data.id,
+                                mapId: data.mapId,
+                                map: new Map(data.updates),
                             })
                         );
-                        store.dispatch(
-                            updateCurrentDistricting(
-                                new Map(response.data.updates)
-                            )
-                        );
+
+                        // Also update current districting if the current districting is the mapjob being updated
+                        if (
+                            store.getState().currentDistricting.mapID ==
+                            data.mapId
+                        ) {
+                            store.dispatch(
+                                updateCurrentDistricting(data.updates)
+                            );
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
                     });
-            }
+            });
         }, 10000);
     }
 
-    private isJobInProgress = false;
-    private lastMapId: MapID = 0;
     constructor() {
         this.requestUpdate();
     }
 
     startMapJob(request: StartMapJobRequest): void {
         axios
-            .get(
-                // TODO get correct url for beta
-                `http://127.0.0.1:8000/startjob/?format=json&alpha=${request.alpha}&beta=${request.beta}&gamma=${request.gamma}&eta=${request.eta}`
-            )
+            .post("create-job/", request)
+            .then((response) => response.data)
             .then(() => {
                 store.dispatch(
                     addMapJob({
+                        name: request.name,
+                        mapId: 0,
                         id: request.id,
                         state: request.state,
                         alpha: request.alpha,
@@ -59,8 +67,10 @@ class AxiosRakanProvider implements RakanProvider {
                         map: new Map(),
                     })
                 );
+            })
+            .catch((error) => {
+                console.log(error);
             });
-        this.isJobInProgress = true;
     }
 
     // Out of scope for beta

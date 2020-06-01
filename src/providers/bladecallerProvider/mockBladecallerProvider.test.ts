@@ -7,7 +7,7 @@ test("Provides Mock Iowa Info", () => {
         state: State.Iowa,
     });
 
-    const currentState = store.getState().currentState;
+    const currentState = store.getState().currentMap;
 
     expect(currentState.stateInfo.state).toBe(State.Iowa);
     expect(currentState.stateInfo.fips).toBe(19);
