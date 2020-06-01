@@ -11,6 +11,7 @@ import StateMap from "./stateMap/stateMap";
 import { RootState } from "../../redux/store";
 import { setPage } from "../../redux/router/actionCreators";
 import { axiosBladecallerProvider } from "../../providers/bladecallerProvider/axiosBladecallerProvider";
+import MapJobList from "./mapList/mapJobList";
 
 const dropdownStyles: Partial<IDropdownStyles> = {
     dropdown: { width: 140 },
@@ -96,7 +97,6 @@ class StateView extends React.Component<StateViewProps> {
                                 });
                             }
                         }}
-                        // TODO add onChange to change displayed state
                     />
                 </div>
                 <div
@@ -196,6 +196,7 @@ class StateView extends React.Component<StateViewProps> {
                     style={{ backgroundColor: "white" }}
                 >
                     REVIEW AUTOMATED MAPS
+                    <MapJobList />
                 </div>
                 {/* <div
                     data-layer="2bd988f9-7e93-4061-b4a0-a7fe6a655663"

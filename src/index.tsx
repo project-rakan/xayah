@@ -18,13 +18,6 @@ axiosBladecallerProvider.getDistricting({
     mapId: 0,
 });
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router />
-    </Provider>,
-    document.getElementById("root")
-);
-
 // Create a new map job containing current Iowa districts
 store.dispatch(
     addMapJob({
@@ -38,6 +31,13 @@ store.dispatch(
         eta: 0,
         map: new Map(),
     })
+);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Router />
+    </Provider>,
+    document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
