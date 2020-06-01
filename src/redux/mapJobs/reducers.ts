@@ -30,7 +30,6 @@ export const mapJobsReducer = (
             }
 
             if (action.payload.map) {
-                console.log("mapJobs", action);
                 action.payload.map.forEach(
                     (value: DistrictID, key: PrecinctID) => {
                         job.map.set(key, value);

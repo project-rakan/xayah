@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 import StateMap from "./stateMap/stateMap";
 import { RootState } from "../../redux/store";
 import { setPage } from "../../redux/router/actionCreators";
+import { axiosBladecallerProvider } from "../../providers/bladecallerProvider/axiosBladecallerProvider";
+import MapJobList from "./mapList/mapJobList";
 
 const dropdownStyles: Partial<IDropdownStyles> = {
     dropdown: { width: 140 },
@@ -22,7 +24,16 @@ const options: IDropdownOption[] = Object.values(State).map((state) => ({
 
 const mapStateToProps = (
     state: RootState
-): { alpha: number; beta: number; gamma: number; eta: number } => ({
+): {
+    alpha: number;
+    beta: number;
+    gamma: number;
+    eta: number;
+    currentState: State;
+    isLoading: boolean;
+} => ({
+    isLoading: state.currentMap.isLoading,
+    currentState: state.currentMap.stateInfo.state,
     alpha: state.userInput.alpha,
     beta: state.userInput.beta,
     gamma: state.userInput.gamma,
@@ -34,15 +45,21 @@ const mapDispatchToProps = {
 };
 
 interface StateViewProps {
+    isLoading: boolean;
     alpha: number;
     beta: number;
     gamma: number;
     eta: number;
+    currentState: State;
     setPage: (page: Page) => void;
 }
 
 class StateView extends React.Component<StateViewProps> {
     render(): JSX.Element {
+        if (this.props.isLoading) {
+            return <h1>Loading</h1>;
+        }
+
         return (
             <div
                 data-layer="660aad63-cd24-4373-aefa-1709afafc662"
@@ -56,7 +73,6 @@ class StateView extends React.Component<StateViewProps> {
                 <div
                     data-layer="73769fb7-a5b8-4c4a-bd88-553c9790ee67"
                     className="rakan"
-                    style={{ backgroundColor: "white" }}
                 >
                     Rakan
                 </div>
@@ -69,8 +85,17 @@ class StateView extends React.Component<StateViewProps> {
                         label="Go To:"
                         options={options}
                         styles={dropdownStyles}
-                        defaultSelectedKey="IA"
-                        // TODO add onChange to change displayed state
+                        selectedKey={this.props.currentState}
+                        onChange={(
+                            event: React.FormEvent<HTMLDivElement>,
+                            item?: IDropdownOption
+                        ): void => {
+                            if (item) {
+                                axiosBladecallerProvider.getStateInfo({
+                                    state: item.key as State,
+                                });
+                            }
+                        }}
                     />
                 </div>
                 <div
@@ -80,7 +105,7 @@ class StateView extends React.Component<StateViewProps> {
                 >
                     Selected District Map
                 </div>
-                <div
+                {/* <div
                     data-layer="06e3b205-cb07-4ec4-8825-980a34a9697a"
                     className="group24"
                     style={{ backgroundColor: "white" }}
@@ -111,11 +136,10 @@ class StateView extends React.Component<StateViewProps> {
                     >
                         Add more custom districts.
                     </div>
-                </div>
+                </div> */}
                 <div
                     data-layer="eca3b7f3-0b5f-4fea-ae55-1c87840806f5"
                     className="group25"
-                    style={{ backgroundColor: "white" }}
                 >
                     {" "}
                     <div
@@ -147,22 +171,12 @@ class StateView extends React.Component<StateViewProps> {
                         Add more potential redistrictings.{" "}
                     </div>
                 </div>
-                <svg
-                    data-layer="77769fa6-4691-4b45-b940-df32d58860fc"
-                    preserveAspectRatio="none"
-                    viewBox="-0.5 0 1 997"
-                    className="line5"
-                >
-                    <path d="M 0 0 L 0 997" />
-                </svg>
 
                 {/* <div
                     data-layer="cbd5ac2f-98ae-41e8-80dd-5d5466700df7"
                     className="reviewCustomMaps"
                     style={{ backgroundColor: "white" }}
-                >
-                    REVIEW CUSTOM MAPS
-                </div> */}
+                ></div> */}
 
                 <div
                     data-layer="a7666fa9-a254-4b11-8b2d-26d3ec42e0a0"
@@ -170,21 +184,15 @@ class StateView extends React.Component<StateViewProps> {
                     style={{ backgroundColor: "white" }}
                 >
                     REVIEW AUTOMATED MAPS
+                    <MapJobList />
                 </div>
-                {/* <div
+                {/*<div
                     data-layer="2bd988f9-7e93-4061-b4a0-a7fe6a655663"
                     className="exampleWashington141554"
                     style={{ backgroundColor: "white" }}
                 >
-                    Example, Washington, 14:15:54
-                </div> */}
-                <div
-                    data-layer="a5e10fbe-7148-4ee4-b05a-3c666a84ab4f"
-                    className="example2California162333"
-                    style={{ backgroundColor: "white" }}
-                >
-                    My First Automated Map, Iowa
-                </div>
+                    <CustomMapList />
+                </div>*/}
                 <div
                     data-layer="a35ad519-3c87-4f3f-bb3e-144f55fc208c"
                     className="mutators"

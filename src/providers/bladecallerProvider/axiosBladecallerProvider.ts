@@ -4,68 +4,58 @@ import {
     GetDistrictingRequest,
     GetStateInfoRequest,
 } from "./types";
-import { GUID, StateName } from "../../types";
+import { GUID } from "../../types";
 import {
     setStateInfo,
-    setCurrentStateLoadingStatus,
-} from "../../redux/currentState/actionCreators";
+    setCurrentMapLoadingStatus,
+} from "../../redux/currentMap/actionCreators";
 import {
     setCurrentDistrictingLoadingStatus,
     replaceCurrentDistricting,
 } from "../../redux/currentDistricting/actionCreators";
-import axios from "axios";
+import axios from "../axios";
 import { store } from "../../redux/store";
 
 class AxiosBladecallerProvider implements BladeCallerProvider {
     // TODO remove redux dependency and refactor to utils
+    // TODO refactor state modification logic
     createGuid = async (request: CreateGuidRequest): Promise<GUID> => {
         return axios
-            .get(
-                // use localhost for beta release
-                `http://127.0.0.1:8000/guid/?state=${request.state}&jobType=${request.jobType}&format=json`
-            )
-            .then((response) => response.data)
+            .post("create-guid/", request)
+            .then((response) => response.data.guid)
             .catch((error) => {
                 console.error(error);
             });
     };
     getDistricting = (request: GetDistrictingRequest): void => {
         store.dispatch(setCurrentDistrictingLoadingStatus(true));
-        const statename = StateName[request.state];
         axios
-            .get(
-                // use localhost for beta release
-                `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.districts.json`
-            )
-            .then((response) => {
-                console.log(response.data.map);
+            .post("get-districting/", request)
+            .then((response) => response.data)
+            .then((data) => {
                 store.dispatch(
                     replaceCurrentDistricting({
-                        districtMap: response.data.map,
-                        mapId: 0, // TODO adjust mapId correctly - no required for beta release
+                        districtMap: data.map,
+                        mapId: data.id, // TODO adjust mapId correctly - no required for beta release
                     })
                 );
             })
             .catch((error) => {
                 console.error(error);
-            });
-        store.dispatch(setCurrentStateLoadingStatus(false));
+            })
+            .finally(() => store.dispatch(setCurrentMapLoadingStatus(false)));
     };
     getStateInfo = (request: GetStateInfoRequest): void => {
-        store.dispatch(setCurrentStateLoadingStatus(true));
-        const statename = StateName[request.state];
+        store.dispatch(setCurrentMapLoadingStatus(true));
         axios
-            .get(
-                // use localhost for beta release
-                `http://127.0.0.1:8000/stateinfo/${statename}/${statename}.json`
-            )
+            .get(`stateinfo/${request.state}.json`)
             .then((response) => {
                 store.dispatch(setStateInfo(response.data));
             })
             .catch((error) => {
                 console.error(error);
-            });
-        store.dispatch(setCurrentStateLoadingStatus(false));
+            })
+            .finally(() => store.dispatch(setCurrentMapLoadingStatus(false)));
     };
 }
 export const axiosBladecallerProvider = new AxiosBladecallerProvider();

@@ -27,13 +27,14 @@ export type MapJobsAction =
     | UpdateMapJobAction;
 
 export interface MapJob {
+    name: string;
     state: State;
     id: GUID;
     alpha: number;
     beta: number;
     gamma: number;
     eta: number;
-    mapId?: MapID;
+    mapId: MapID;
     map: Map<PrecinctID, DistrictID>;
 }
 

@@ -11,9 +11,10 @@ import {
     setEta,
 } from "../../redux/userInput/actionCreators";
 import {} from "@uifabric/react-hooks";
-import { Page, State } from "../../types";
+import { Page, State, JobType } from "../../types";
 import { axiosRakanProvider } from "../../providers/rakanProvider/axiosRakanProvider";
 import { setPage } from "../../redux/router/actionCreators";
+import { axiosBladecallerProvider } from "../../providers/bladecallerProvider/axiosBladecallerProvider";
 
 const mapStateToProps = (
     state: RootState
@@ -23,12 +24,14 @@ const mapStateToProps = (
     gamma: number;
     eta: number;
     mapName: string;
+    currentState: State;
 } => ({
     alpha: state.userInput.alpha,
     beta: state.userInput.beta,
     gamma: state.userInput.gamma,
     eta: state.userInput.eta,
     mapName: state.userInput.mapName,
+    currentState: state.currentMap.stateInfo.state,
 });
 
 const mapDispatchToProps = {
@@ -46,6 +49,7 @@ interface AutomateRedistrictingOverlayProps {
     gamma: number;
     eta: number;
     mapName: string;
+    currentState: State;
     setAlpha: (alpha: number) => void;
     setBeta: (beta: number) => void;
     setGamma: (gamma: number) => void;
@@ -74,15 +78,23 @@ class AutomateRedistrictingOverlay extends React.Component<
                     data-layer="12315a68-462c-47bc-9161-68b960ab181d"
                     className="rectangle17"
                     onClick={(): void => {
+                        axiosBladecallerProvider
+                            .createGuid({
+                                state: this.props.currentState,
+                                jobType: JobType.StartMap,
+                            })
+                            .then((jobId) => {
+                                axiosRakanProvider.startMapJob({
+                                    name: this.props.mapName,
+                                    alpha: this.props.alpha,
+                                    beta: this.props.beta,
+                                    gamma: this.props.gamma,
+                                    eta: this.props.eta,
+                                    id: jobId,
+                                    state: State.Iowa,
+                                });
+                            });
                         this.props.setPage(Page.StateView);
-                        axiosRakanProvider.startMapJob({
-                            alpha: this.props.alpha,
-                            beta: this.props.beta,
-                            gamma: this.props.gamma,
-                            eta: this.props.eta,
-                            id: "1",
-                            state: State.Iowa,
-                        });
                     }}
                 ></div>
                 <div
