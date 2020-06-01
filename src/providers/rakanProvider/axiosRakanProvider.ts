@@ -7,6 +7,7 @@ import {
 import { addMapJob, updateMapJob } from "../../redux/mapJobs/actionCreators";
 import axios from "../axios";
 import { store } from "../../redux/store";
+import { updateCurrentDistricting } from "../../redux/currentDistricting/actionCreators";
 
 class AxiosRakanProvider implements RakanProvider {
     // TODO remove redux dependency and refactor to utils
@@ -26,6 +27,16 @@ class AxiosRakanProvider implements RakanProvider {
                                 map: new Map(data.updates),
                             })
                         );
+
+                        // Also update current districting if the current districting is the mapjob being updated
+                        if (
+                            store.getState().currentDistricting.mapID ==
+                            data.mapId
+                        ) {
+                            store.dispatch(
+                                updateCurrentDistricting(data.updates)
+                            );
+                        }
                     })
                     .catch((error) => {
                         console.log(error);
