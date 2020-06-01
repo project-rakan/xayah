@@ -1,25 +1,21 @@
 import { RakanProvider, StartMapJobRequest, ScoreMapRequest } from "./types";
 import { addMapJob, updateMapJob } from "../../redux/mapJobs/actionCreators";
-import axios from "axios";
+import axios from "../axios";
 import { updateCurrentDistricting } from "../../redux/currentDistricting/actionCreators";
-import { MapID } from "../../types";
 import { store } from "../../redux/store";
+import { MapJobUpdate } from "../../redux/mapJobs/types";
 
 class AxiosRakanProvider implements RakanProvider {
     // TODO remove redux dependency and refactor to utils
     // TODO refactor state modification logic
     private requestUpdate(): void {
         setInterval(() => {
-            if (this.isJobInProgress) {
+            store.getState().mapJobs.forEach((job) => {
+                const jobUpdateRequest: MapJobUpdate = { id: job.id };
                 axios
-                    .get(
-                        // TODO get correct url for beta - include last mapId recieved - this.lastMapId
-                        // Also need to specify alpha/beta/gamma/eta values
-                        `http://127.0.0.1:8000/mapjobupdate/?format=json&mapId=${this.lastMapId}`
-                    )
+                    .post("get-job-update/", jobUpdateRequest)
                     .then((response) => {
                         console.log(response.data);
-                        this.lastMapId = response.data.mapId;
                         store.dispatch(
                             updateMapJob({
                                 id: response.data.id,
@@ -32,38 +28,30 @@ class AxiosRakanProvider implements RakanProvider {
                             )
                         );
                     });
-            }
+            });
         }, 10000);
     }
 
-    private isJobInProgress = false;
-    private lastMapId: MapID = 0;
     constructor() {
         this.requestUpdate();
     }
 
     startMapJob(request: StartMapJobRequest): void {
-        axios
-            .get(
-                // TODO get correct url for beta
-                `http://127.0.0.1:8000/startjob/?format=json&alpha=${request.alpha}&beta=${request.beta}&gamma=${request.gamma}&eta=${request.eta}`
-            )
-            .then(() => {
-                store.dispatch(
-                    addMapJob({
-                        name: request.name,
-                        id: request.id,
-                        mapId: 0,
-                        state: request.state,
-                        alpha: request.alpha,
-                        beta: request.beta,
-                        gamma: request.gamma,
-                        eta: request.eta,
-                        map: new Map(),
-                    })
-                );
-            });
-        this.isJobInProgress = true;
+        axios.post("create-job/", request).then(() => {
+            store.dispatch(
+                addMapJob({
+                    name: request.name,
+                    mapId: 0,
+                    id: request.id,
+                    state: request.state,
+                    alpha: request.alpha,
+                    beta: request.beta,
+                    gamma: request.gamma,
+                    eta: request.eta,
+                    map: new Map(),
+                })
+            );
+        });
     }
 
     // Out of scope for beta
