@@ -15,6 +15,7 @@ import {
 } from "../../redux/currentDistricting/actionCreators";
 import axios from "../axios";
 import { store } from "../../redux/store";
+import { addMapJob } from "../../redux/mapJobs/actionCreators";
 
 class AxiosBladecallerProvider implements BladeCallerProvider {
     // TODO remove redux dependency and refactor to utils
@@ -51,6 +52,31 @@ class AxiosBladecallerProvider implements BladeCallerProvider {
             .get(`stateinfo/${request.state}.json`)
             .then((response) => {
                 store.dispatch(setStateInfo(response.data));
+                // If the state is already in the job list, switch to it, else add it to the list.
+                if (
+                    !store
+                        .getState()
+                        .mapJobs.find(
+                            (job) =>
+                                job.state == request.state && job.mapId == 0
+                        )
+                ) {
+                    store.dispatch(
+                        addMapJob({
+                            name: "Current Districting",
+                            mapId: 0,
+                            id: request.state,
+                            state: request.state,
+                            alpha: 0,
+                            beta: 0,
+                            gamma: 0,
+                            eta: 0,
+                            score: 0,
+                            probability: 0,
+                            map: new Map(),
+                        })
+                    );
+                }
             })
             .catch((error) => {
                 console.error(error);

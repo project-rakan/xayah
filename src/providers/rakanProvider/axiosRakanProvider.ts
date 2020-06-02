@@ -25,13 +25,17 @@ class AxiosRakanProvider implements RakanProvider {
                                 id: data.id,
                                 mapId: data.mapId,
                                 map: new Map(data.updates),
+                                score: data.score,
+                                probability: data.probability,
                             })
                         );
 
                         // Also update current districting if the current districting is the mapjob being updated
                         if (
                             store.getState().currentDistricting.mapID ==
-                            data.mapId
+                                data.mapId &&
+                            store.getState().currentMap.stateInfo.state ==
+                                jobUpdateRequest.state
                         ) {
                             store.dispatch(
                                 updateCurrentDistricting(data.updates)
@@ -63,6 +67,8 @@ class AxiosRakanProvider implements RakanProvider {
                         alpha: request.alpha,
                         beta: request.beta,
                         gamma: request.gamma,
+                        score: 0,
+                        probability: 0,
                         eta: request.eta,
                         map: new Map(),
                     })
