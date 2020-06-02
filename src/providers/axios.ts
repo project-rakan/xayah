@@ -1,4 +1,9 @@
 import axios from "axios";
+
+if (!process.env.RAKAN_BASE_URL) {
+    throw new Error("Rakan Base url is not defined");
+}
+
 export default axios.create({
-    baseURL: "http://477ee07ec5d5.ngrok.io",
+    baseURL: process.env.RAKAN_BASE_URL,
 });
