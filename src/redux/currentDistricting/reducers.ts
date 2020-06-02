@@ -35,10 +35,10 @@ export const currentDistrictingReducer = (
             const newState = { ...state };
 
             // Copy the old district map then update each new entry
-            const newMap = new Map(state.districtMap);
-            action.payload.forEach((value: DistrictID, key: PrecinctID) => {
-                newMap.set(key, value);
-            });
+            const newMap = new Map(action.payload);
+            // action.payload.forEach((value: DistrictID, key: PrecinctID) => {
+            //     newMap.set(key, value);
+            // });
             newState.districtMap = newMap;
 
             return newState;

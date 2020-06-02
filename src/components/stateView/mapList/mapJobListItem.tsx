@@ -43,28 +43,30 @@ interface MapJobListItemProps {
 }
 
 class MapJobListItem extends React.Component<MapJobListItemProps> {
+    handleSelect = (): void => {
+        this.props.replaceCurrentDistricting({
+            districtMap: this.props.job.map,
+            mapId: this.props.job.mapId,
+        });
+        if (this.props.job.state !== this.props.currentState) {
+            axiosBladecallerProvider.getStateInfo({
+                state: this.props.job.state,
+            });
+        }
+    };
+
     render(): JSX.Element {
         return (
-            <Stack
-                horizontal
-                tokens={customSpacingStackTokens}
-                onClick={(): void => {
-                    this.props.replaceCurrentDistricting({
-                        districtMap: this.props.job.map,
-                        mapId: this.props.job.mapId,
-                    });
-                    if (this.props.job.state !== this.props.currentState) {
-                        axiosBladecallerProvider.getStateInfo({
-                            state: this.props.job.state,
-                        });
-                    }
-                }}
-            >
+            <Stack horizontal tokens={customSpacingStackTokens}>
                 <Stack.Item align="center">
-                    {this.props.currentState == this.props.job.state ? (
+                    {this.props.currentState === this.props.job.state &&
+                    this.props.currentMapId === this.props.job.mapId ? (
                         <FontIcon iconName="RadioBtnOn" />
                     ) : (
-                        <FontIcon iconName="RadioBtnOff" />
+                        <FontIcon
+                            iconName="RadioBtnOff"
+                            onClick={this.handleSelect}
+                        />
                     )}
                 </Stack.Item>
                 <Stack.Item align="center">
@@ -74,7 +76,6 @@ class MapJobListItem extends React.Component<MapJobListItemProps> {
                     <Label>{this.props.job.state}</Label>
                 </Stack.Item>
                 <Stack.Item align="center">
-                    {" "}
                     <IconButton
                         iconProps={{ iconName: "Cancel" }}
                         onClick={(): void =>

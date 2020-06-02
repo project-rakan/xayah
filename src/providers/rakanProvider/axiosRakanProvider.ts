@@ -33,7 +33,9 @@ class AxiosRakanProvider implements RakanProvider {
                         // Also update current districting if the current districting is the mapjob being updated
                         if (
                             store.getState().currentDistricting.mapID ==
-                            data.mapId
+                                data.mapId &&
+                            store.getState().currentMap.stateInfo.state ==
+                                jobUpdateRequest.state
                         ) {
                             store.dispatch(
                                 updateCurrentDistricting(data.updates)

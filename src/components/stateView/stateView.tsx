@@ -22,10 +22,16 @@ const dropdownStyles: Partial<IDropdownStyles> = {
     dropdown: { width: 140 },
 };
 
-const options: IDropdownOption[] = Object.values(State).map((state) => ({
-    key: state,
-    text: state,
-}));
+// const options: IDropdownOption[] = Object.values(State).map((state) => ({
+//     key: state,
+//     text: state,
+// }));
+
+// Currently data is only avaliable for WA and IA
+const options: IDropdownOption[] = [
+    { key: State.Iowa, text: State.Iowa },
+    { key: State.Washington, text: State.Washington },
+];
 
 const mapStateToProps = (
     state: RootState

@@ -20,8 +20,6 @@ class PrecinctPolygon extends React.Component<PrecinctPolygonProps> {
         "DarkBlue",
         "DarkCyan",
         "DarkGoldenRod",
-        "DarkGray",
-        "DarkGrey",
         "DarkGreen",
         "DarkKhaki",
         "DarkMagenta",
