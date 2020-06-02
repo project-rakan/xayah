@@ -21,6 +21,8 @@ class MockRakanProvider implements RakanProvider {
                         alpha: request.alpha,
                         beta: request.beta,
                         gamma: request.gamma,
+                        score: 0,
+                        probability: 0,
                         eta: request.eta,
                         map: new Map(),
                     })
