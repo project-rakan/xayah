@@ -3,7 +3,6 @@ import {
     CurrentDistrictingAction,
     CurrentDistrictingActionType,
 } from "./types";
-import { PrecinctID, DistrictID } from "../../types";
 
 const initialState: CurrentDistricting = {
     isLoading: false,
