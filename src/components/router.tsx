@@ -4,7 +4,6 @@ import { RootState } from "../redux/store";
 import CustomRedistrictOverlay from "./customRedistrictOverlay/customRedistrictOverlay";
 import AutomateRedistrictingOverlay from "./automateRedistrictingOverlay/automateRedistrictingOverlay";
 import StateView from "./stateView/stateView";
-import { PrecinctSelectScreen } from "./precinctSelectScreen/precinctSelectScreen";
 import { Page } from "../types";
 
 const mapStateToProps = (state: RootState): { page: Page } => ({
@@ -26,8 +25,6 @@ class Router extends React.Component<RouterProps> {
                 return <AutomateRedistrictingOverlay />;
             case Page.CustomRedistrictOverlay:
                 return <CustomRedistrictOverlay />;
-            case Page.PrecintSelectScreen:
-                return <PrecinctSelectScreen />;
             default:
                 return <StateView />;
         }
