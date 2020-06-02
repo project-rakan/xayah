@@ -4,6 +4,7 @@ export enum CurrentMapActionType {
     SetStateInfo = "SetStateInfo",
     SetMapLoadingStatus = "SetMapLoadingStatus",
     SetZoom = "SetZoom",
+    SetSize = "SetSize",
 }
 
 interface SetZoomAction {
@@ -21,7 +22,13 @@ interface SetMapLoadingStatus {
     payload: boolean;
 }
 
+interface SetSize {
+    type: CurrentMapActionType.SetSize;
+    payload: { width: number; height: number };
+}
+
 export type CurrentMapAction =
+    | SetSize
     | SetStateInfo
     | SetMapLoadingStatus
     | SetZoomAction;
@@ -37,4 +44,5 @@ export interface CurrentMap {
     isLoading: boolean;
     stateInfo: StateInfo;
     zoom: number;
+    size: { width: number; height: number };
 }

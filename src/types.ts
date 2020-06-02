@@ -71,7 +71,6 @@ export enum Page {
     StateView,
     AutomateRedistrictingOverlay,
     CustomRedistrictOverlay,
-    PrecintSelectScreen,
 }
 
 export type PrecinctID = number;

@@ -10,6 +10,7 @@ const initialState: CurrentMap = {
         precincts: [],
     },
     zoom: 0,
+    size: { width: window.innerWidth, height: window.innerHeight },
 };
 
 export const currentMapReducer = (
@@ -35,6 +36,13 @@ export const currentMapReducer = (
             const newState = { ...state };
 
             newState.zoom = action.payload;
+
+            return newState;
+        }
+        case CurrentMapActionType.SetSize: {
+            const newState = { ...state };
+
+            newState.size = action.payload;
 
             return newState;
         }

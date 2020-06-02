@@ -1,7 +1,12 @@
 import React from "react";
-import { DefaultButton, Stack, IStackTokens } from "office-ui-fabric-react";
+import {
+    IStackTokens,
+    Label,
+    IconButton,
+    Stack,
+    FontIcon,
+} from "office-ui-fabric-react";
 import { connect } from "react-redux";
-import { Label } from "office-ui-fabric-react/lib/Label";
 import { MapJob } from "../../../redux/mapJobs/types";
 import { removeMapJob } from "../../../redux/mapJobs/actionCreators";
 import { GUID, PrecinctID, DistrictID, MapID, State } from "../../../types";
@@ -40,32 +45,43 @@ interface MapJobListItemProps {
 class MapJobListItem extends React.Component<MapJobListItemProps> {
     render(): JSX.Element {
         return (
-            <Stack horizontal tokens={customSpacingStackTokens}>
-                <Label
-                    onClick={(): void => {
-                        this.props.replaceCurrentDistricting({
-                            districtMap: this.props.job.map,
-                            mapId: this.props.job.mapId,
+            <Stack
+                horizontal
+                tokens={customSpacingStackTokens}
+                onClick={(): void => {
+                    this.props.replaceCurrentDistricting({
+                        districtMap: this.props.job.map,
+                        mapId: this.props.job.mapId,
+                    });
+                    if (this.props.job.state !== this.props.currentState) {
+                        axiosBladecallerProvider.getStateInfo({
+                            state: this.props.job.state,
                         });
-                        if (this.props.job.state !== this.props.currentState) {
-                            axiosBladecallerProvider.getStateInfo({
-                                state: this.props.job.state,
-                            });
-                        }
-                    }}
-                >
-                    {`${
-                        this.props.currentMapId == this.props.job.mapId
-                            ? ">"
-                            : " "
-                    } ${this.props.job.name}, ${this.props.job.state}`}
-                </Label>
-                <DefaultButton
-                    text="Remove"
-                    onClick={(): void =>
-                        this.props.removeMapJob(this.props.job.id)
                     }
-                />
+                }}
+            >
+                <Stack.Item align="center">
+                    {this.props.currentState == this.props.job.state ? (
+                        <FontIcon iconName="RadioBtnOn" />
+                    ) : (
+                        <FontIcon iconName="RadioBtnOff" />
+                    )}
+                </Stack.Item>
+                <Stack.Item align="center">
+                    <Label>{this.props.job.name}</Label>
+                </Stack.Item>
+                <Stack.Item align="center">
+                    <Label>{this.props.job.state}</Label>
+                </Stack.Item>
+                <Stack.Item align="center">
+                    {" "}
+                    <IconButton
+                        iconProps={{ iconName: "Cancel" }}
+                        onClick={(): void =>
+                            this.props.removeMapJob(this.props.job.id)
+                        }
+                    />
+                </Stack.Item>
             </Stack>
         );
     }

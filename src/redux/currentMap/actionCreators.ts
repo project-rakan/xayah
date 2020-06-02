@@ -16,3 +16,11 @@ export const setZoom = (zoom: number): CurrentMapAction => ({
     type: CurrentMapActionType.SetZoom,
     payload: zoom,
 });
+
+export const setSize = (size: {
+    width: number;
+    height: number;
+}): CurrentMapAction => ({
+    type: CurrentMapActionType.SetSize,
+    payload: size,
+});

@@ -53,7 +53,7 @@ class StateMap extends React.Component<StateMapProps> {
                         key: process.env.REACT_APP_GOOGLE_API_KEY,
                     }}
                     defaultCenter={center}
-                    defaultZoom={defaultZoom}
+                    zoom={defaultZoom}
                     onChange={this.onChangeHandler}
                 >
                     {/* Must pass lat and lng seperately for map location to be correct */}
