@@ -37,6 +37,14 @@ export const mapJobsReducer = (
                 );
             }
 
+            if (action.payload.score) {
+                job.score = action.payload.score;
+            }
+
+            if (action.payload.probability) {
+                job.probability = action.payload.probability;
+            }
+
             return newState;
         }
         default: {

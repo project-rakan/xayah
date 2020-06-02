@@ -36,10 +36,14 @@ export interface MapJob {
     eta: number;
     mapId: MapID;
     map: Map<PrecinctID, DistrictID>;
+    score: number;
+    probability: number;
 }
 
 export interface MapJobUpdate {
     map?: Map<PrecinctID, DistrictID>;
     mapId?: MapID;
     id: GUID;
+    score?: number;
+    probability?: number;
 }
